@@ -56,6 +56,9 @@ import pandas as pd
 
 df = pd.read_csv("IRIS.csv")
 df.head()
+```
+
+
 
 ## 2.5 Dimensi Dataset
 

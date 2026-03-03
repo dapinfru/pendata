@@ -386,7 +386,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">2.1 Pendahuluan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-data-understanding">2.2 Tujuan Data Understanding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-dan-karakteristik-dataset">2.3 Sumber dan Karakteristik Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset">2.4 Memuat Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset">2.4 Memuat Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensi-dataset">2.5 Dimensi Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi</a></li>
 </ul>
 </li>
@@ -507,13 +508,13 @@ File <code class="docutils literal notranslate"><span class="pre">IRIS.csv</span
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;IRIS.csv&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-
-<span class="c1">## 2.5 Dimensi Dataset</span>
-
-<span class="n">Untuk</span> <span class="n">mengetahui</span> <span class="n">ukuran</span> <span class="n">dataset</span> <span class="p">(</span><span class="n">jumlah</span> <span class="n">baris</span> <span class="n">dan</span> <span class="n">kolom</span><span class="p">)</span> <span class="n">digunakan</span><span class="p">:</span>
-
-<span class="err">```</span><span class="n">python</span>
-<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</section>
+<section id="dimensi-dataset">
+<h2>2.5 Dimensi Dataset<a class="headerlink" href="#dimensi-dataset" title="Link to this heading">#</a></h2>
+<p>Untuk mengetahui ukuran dataset (jumlah baris dan kolom) digunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 <section id="interpretasi">
@@ -855,7 +856,8 @@ Jika ada outlier, perlu dianalisis apakah merupakan kesalahan input atau variasi
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">2.1 Pendahuluan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-data-understanding">2.2 Tujuan Data Understanding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-dan-karakteristik-dataset">2.3 Sumber dan Karakteristik Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset">2.4 Memuat Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset">2.4 Memuat Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensi-dataset">2.5 Dimensi Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi</a></li>
 </ul>
 </li>
