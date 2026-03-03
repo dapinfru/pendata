@@ -1,11 +1,18 @@
-# Welcome to your Jupyter Book
+# Biodata
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+## Identitas Diri
 
-Check out the content pages bundled with this sample book to see more.
+| Aspek | Keterangan |
+|-------|-----------|
+| **Nama Lengkap** | Dhafin Rizqika Akhmad |
+| **NIM** | 240411100099 |
+| **Program Studi** | Teknik Informatika |
+| **Kelas** | 4B |
+| **Mata Kuliah** | Penambangan Data (Data Mining) |
+
+## Tentang Website Ini
+
+Website ini merupakan dokumentasi pembelajaran untuk mata kuliah **Penambangan Data** yang dipelajari di semester ini. Konten mencakup materi pembelajaran, pemahaman bisnis, persiapan data, dan eksplorasi data yang berkaitan dengan teknik penambangan data.
 
 ```{tableofcontents}
 ```
