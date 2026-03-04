@@ -401,6 +401,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-sebelum-dan-sesudah-scaling">Visualisasi Sebelum dan Sesudah Scaling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sebelum-scaling">3.9 Sebelum Scaling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sesudah-scaling">3.10 Sesudah Scaling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-dataset-hasil-preprocessing-untuk-tahap-pemodelan">Menyimpan Dataset Hasil Preprocessing untuk Tahap Pemodelan</a></li>
 </ul>
             </nav>
         </div>
@@ -589,18 +590,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-
-<span class="n">Jika</span> <span class="n">terdapat</span> <span class="n">data</span> <span class="n">duplikat</span><span class="p">,</span> <span class="n">data</span> <span class="n">tersebut</span> <span class="n">dapat</span> <span class="n">dihapus</span> <span class="n">dengan</span><span class="p">:</span>
-
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-    <span class="n">Jika</span> <span class="n">terdapat</span> <span class="n">data</span> <span class="n">duplikat</span><span class="p">,</span> <span class="n">data</span> <span class="n">tersebut</span> <span class="n">dapat</span> <span class="n">dihapus</span> <span class="n">dengan</span><span class="p">:</span>
-         <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
@@ -727,7 +717,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e149fb932244bc59bd64683bca7b7397119380c4a7d29f2e9621850be4594582.png" src="_images/e149fb932244bc59bd64683bca7b7397119380c4a7d29f2e9621850be4594582.png" />
+<img alt="_images/7df8af467e43c80ebb52371b91d248064ce1dbd93560ff0bbb77d79648781610.png" src="_images/7df8af467e43c80ebb52371b91d248064ce1dbd93560ff0bbb77d79648781610.png" />
 </div>
 </div>
 </section>
@@ -760,8 +750,106 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d21d7f5aace493364e432e0837f943bcbaf6827a5612eeef3e4c42abb1a7164f.png" src="_images/d21d7f5aace493364e432e0837f943bcbaf6827a5612eeef3e4c42abb1a7164f.png" />
+<img alt="_images/e7e52dfcc788f607efee2ffeee29e93109f7a80d8983fd5701abf7b6a4801155.png" src="_images/e7e52dfcc788f607efee2ffeee29e93109f7a80d8983fd5701abf7b6a4801155.png" />
 </div>
+</div>
+</section>
+<section id="menyimpan-dataset-hasil-preprocessing-untuk-tahap-pemodelan">
+<h2>Menyimpan Dataset Hasil Preprocessing untuk Tahap Pemodelan<a class="headerlink" href="#menyimpan-dataset-hasil-preprocessing-untuk-tahap-pemodelan" title="Link to this heading">#</a></h2>
+<p>Setelah seluruh proses <strong>data preparation</strong> selesai dilakukan, langkah berikutnya adalah menyimpan dataset yang telah diproses. Dataset ini nantinya akan digunakan pada tahap <strong>modeling</strong> atau pembuatan model machine learning.</p>
+<p>Pada tahap ini, fitur yang telah melalui proses <strong>standarisasi (scaling)</strong> digabungkan kembali dengan variabel target sehingga menghasilkan dataset akhir yang siap digunakan dalam proses analisis lebih lanjut.</p>
+<p>Dataset yang telah diproses kemudian disimpan dalam format <strong>CSV</strong> agar mudah digunakan kembali pada tahap pemodelan maupun analisis lanjutan.</p>
+<p>Berikut contoh kode untuk membuat dataset akhir dan menyimpannya ke dalam file CSV.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df_final</span><span class="p">[</span><span class="s2">&quot;class_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="n">df_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;iris_preprocessed_dataset.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">df_final</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Dengan demikian dataset telah siap digunakan untuk tahap berikutnya yaitu model development atau pembangunan model machine learning.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df_final</span><span class="p">[</span><span class="s2">&quot;class_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="n">df_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;iris_preprocessed_dataset.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">df_final</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+      <th>class_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.898033</td>
+      <td>1.012401</td>
+      <td>-1.333255</td>
+      <td>-1.308624</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.139562</td>
+      <td>-0.137353</td>
+      <td>-1.333255</td>
+      <td>-1.308624</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1.381091</td>
+      <td>0.322549</td>
+      <td>-1.390014</td>
+      <td>-1.308624</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.501855</td>
+      <td>0.092598</td>
+      <td>-1.276496</td>
+      <td>-1.308624</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.018798</td>
+      <td>1.242352</td>
+      <td>-1.333255</td>
+      <td>-1.308624</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -840,6 +928,7 @@ dtype: int64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-sebelum-dan-sesudah-scaling">Visualisasi Sebelum dan Sesudah Scaling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sebelum-scaling">3.9 Sebelum Scaling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sesudah-scaling">3.10 Sesudah Scaling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-dataset-hasil-preprocessing-untuk-tahap-pemodelan">Menyimpan Dataset Hasil Preprocessing untuk Tahap Pemodelan</a></li>
 </ul>
   </nav></div>
 
