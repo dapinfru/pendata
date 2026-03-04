@@ -423,52 +423,22 @@ Output yang dihasilkan:
 
 #### 6.2.2 Mengukur jarak dataset Tipe data campuran
 
-Dataset yang digunakan untuk contoh kali ini adalah dataset berjudu; 'Student Alcohol Consumption'. Dimana dataset ini memiliki sekitar 30 fitur di dalam nya. Namun pada penugasan kali ini, kami menggunakan hanya 7 fitur diantaranya yaitu fitur sex, age, Medu, Fedu, Fjob, activities, schoolsup. Dimana tipe data Nominal dimiliki oleh [sex, fjob, activities, schoolsup] lalu tipe data numerik [Age] terakhir adalah tipe data ordinal [medu, fedu]. Dilakukan perhitungan jarak dengan metode Gower
+Dataset yang digunakan untuk contoh kali ini adalah dataset berjudu; 'Student Activity Dataset'. Dimana dataset ini memiliki sekitar 30 fitur di dalam nya. Namun pada penugasan kali ini, kami menggunakan hanya 7 fitur diantaranya yaitu fitur sex, age, Medu, Fedu, Fjob, activities, schoolsup. Dimana tipe data Nominal dimiliki oleh [fjob ] lalu tipe data biner yaitu [sex, age, activies, schoolup] lalu tipe data numerik [Age] dan ada  tipe data ordinal [medu, fedu]. Dilakukan perhitungan jarak dengan metode Gower
 
 ### Jenis Tipe Data pada Dataset
 
-Pada dataset ini terdapat tiga jenis tipe data:
-1. Data Nominal 
-
-Data yang berupa kategori tanpa urutan.
-
-| Kolom      | Contoh nilai   |
-| ---------- | -------------- |
-| sex        | M / F          |
-| Fjob       | teacher, other |
-| activities | yes / no       |
-| schoolsup  | yes / no       |
-
-2. Data Numerik 
-
-Data berupa angka yang bisa dihitung secara matematis.
-| Kolom | Contoh nilai   |
-| ----- | -------------- |
-| age   | 15, 16, 17, 18 |
-Perhitungan jaraknya menggunakan normalisasi.
-
-3. Data Ordinal
-
-Data kategori yang memiliki tingkatan atau urutan.
-
-| Kolom | Nilai |
-| ----- | ----- |
-| Medu  | 0 – 4 |
-| Fedu  | 0 – 4 |
-
-Nilai tersebut menunjukkan tingkat pendidikan orang tua.
 
 Tabel gabungan dan tipe data 
 
 | Fitur      | Tipe Data |
 | ---------- | --------- |
-| sex        | nominal   |
+| sex        | biner   |
 | age        | numerik   |
 | Medu       | ordinal   |
 | Fedu       | ordinal   |
 | Fjob       | nominal   |
-| activities | nominal   |
-| schoolsup  | nominal   |
+| activities | biner   |
+| schoolsup  | biner   |
 
 
 
