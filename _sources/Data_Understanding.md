@@ -458,6 +458,20 @@ Data kategori yang memiliki tingkatan atau urutan.
 
 Nilai tersebut menunjukkan tingkat pendidikan orang tua.
 
+Tabel gabungan dan tipe data 
+
+| Fitur      | Tipe Data |
+| ---------- | --------- |
+| sex        | nominal   |
+| age        | numerik   |
+| Medu       | ordinal   |
+| Fedu       | ordinal   |
+| Fjob       | nominal   |
+| activities | nominal   |
+| schoolsup  | nominal   |
+
+
+
 ##### 6.2.2.1 Perhitungan manual
 
 Contoh perhitungan manual antara baris 1 dan 2, lalu baris 1 dan 4:
