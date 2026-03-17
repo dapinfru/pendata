@@ -423,7 +423,13 @@ Output yang dihasilkan:
 
 #### 6.2.2 Mengukur jarak dataset Tipe data campuran
 
-Dataset yang digunakan untuk contoh kali ini adalah dataset berjudu; 'Student Activity Dataset'. Dimana dataset ini memiliki sekitar 30 fitur di dalam nya. Namun pada penugasan kali ini, kami menggunakan hanya 7 fitur diantaranya yaitu fitur sex, age, Medu, Fedu, Fjob, activities, schoolsup. Dimana tipe data Nominal dimiliki oleh [fjob ] lalu tipe data biner yaitu [sex, age, activies, schoolup] lalu tipe data numerik [Age] dan ada  tipe data ordinal [medu, fedu]. Dilakukan perhitungan jarak dengan metode Gower
+Jenis Tipe Data pada Dataset
+
+Dataset yang digunakan sebagai contoh pada bagian ini adalah Student Activity Dataset. Dataset ini sebenarnya memiliki sekitar 30 fitur, namun pada penugasan ini hanya digunakan 7 fitur saja, yaitu sex, age, Medu, Fedu, Fjob, activities, dan schoolsup.
+
+Ketujuh fitur tersebut memiliki tipe data yang berbeda, sehingga dataset ini termasuk data campuran (mixed data). Tipe data yang terdapat pada dataset ini meliputi nominal, biner, numerik, dan ordinal.
+
+Perhitungan jarak pada dataset dengan tipe data campuran ini dilakukan menggunakan metode Gower Distance, karena metode ini dapat menghitung jarak antar data yang memiliki berbagai tipe data dalam satu dataset.
 
 ### Jenis Tipe Data pada Dataset
 
