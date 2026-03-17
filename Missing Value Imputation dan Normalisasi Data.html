@@ -644,11 +644,12 @@ S_i = \frac{1}{d_i}
 <h1>1.7 Implementasi WKNN Menggunakan Python<a class="headerlink" href="#implementasi-wknn-menggunakan-python" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Import Library</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+## Import Library
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
 </pre></div>
 </div>
 </div>
@@ -657,83 +658,218 @@ S_i = \frac{1}{d_i}
 <h2>Membaca Dataset<a class="headerlink" href="#membaca-dataset" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Titanic-Dataset.csv&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+df = pd.read_csv(&quot;Titanic-Dataset.csv&quot;)
+df.head()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Titanic-Dataset.csv&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="output text_html">
+  <div id="df-08c5e9ff-6795-406b-9484-3254babfa40e" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pandas/io/parsers/readers.py:873,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, skip_blank_lines, parse_dates, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">863</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">869</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">873</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pandas/io/parsers/readers.py:300,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">300</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1645,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1642</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1644</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1645</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1904,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1902</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1903</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1904</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1905</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1906</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1907</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1908</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1909</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1910</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1911</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1912</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1913</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1914</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1915</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pandas/io/common.py:926,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">921</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">922</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">923</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">924</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">925</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">926</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">927</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">928</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">929</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">930</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">931</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">932</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">933</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">934</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;Titanic-Dataset.csv&#39;
-</pre></div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-08c5e9ff-6795-406b-9484-3254babfa40e')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-08c5e9ff-6795-406b-9484-3254babfa40e button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-08c5e9ff-6795-406b-9484-3254babfa40e');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="id1">
 <h2>Menentukan Missing Value<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+
+df.isnull().sum()
 </pre></div>
 </div>
 </div>
@@ -815,14 +951,14 @@ S_i = \frac{1}{d_i}
 <p>##Menentukan fitur</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Fare&quot;</span><span class="p">,</span> <span class="s2">&quot;Pclass&quot;</span><span class="p">,</span> <span class="s2">&quot;SibSp&quot;</span><span class="p">,</span> <span class="s2">&quot;Parch&quot;</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>features = [&quot;Fare&quot;, &quot;Pclass&quot;, &quot;SibSp&quot;, &quot;Parch&quot;]
+data = df[[&quot;Age&quot;] + features].copy()
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitur yang digunakan untuk menghitung kemiripan:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+print(&quot;Fitur yang digunakan untuk menghitung kemiripan:&quot;)
+print(features)
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data yang akan digunakan:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+print(&quot;\nData yang akan digunakan:&quot;)
+print(data.head())
 </pre></div>
 </div>
 </div>
@@ -846,20 +982,21 @@ Data yang akan digunakan:
 <h2>Normalisasi Data<a class="headerlink" href="#normalisasi-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+from sklearn.preprocessing import StandardScaler
 
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+scaler = StandardScaler()
 
-<span class="n">scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">features</span><span class="p">]),</span>
-    <span class="n">columns</span><span class="o">=</span><span class="n">features</span><span class="p">,</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span>
-<span class="p">)</span>
+scaled = pd.DataFrame(
+    scaler.fit_transform(data[features]),
+    columns=features,
+    index=data.index
+)
 
-<span class="n">scaled_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span><span class="p">[[</span><span class="s2">&quot;Age&quot;</span><span class="p">]],</span> <span class="n">scaled</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+scaled_data = pd.concat([data[[&quot;Age&quot;]], scaled], axis=1)
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data setelah standardisasi:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scaled_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+print(&quot;Data setelah standardisasi:&quot;)
+print(scaled_data.head())
 </pre></div>
 </div>
 </div>
@@ -880,33 +1017,36 @@ Data yang akan digunakan:
 <h2>Fungsi WKNN<a class="headerlink" href="#fungsi-wknn" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">wknn</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
 
-    <span class="n">complete</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
-    <span class="n">missing</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
 
-    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">missing</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-        <span class="n">row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">features</span><span class="p">]</span>
+def wknn(df, target, features, k=3):
+    df = df.copy()
 
-        <span class="n">distances</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">complete</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-            <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">row</span> <span class="o">-</span> <span class="n">complete</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">features</span><span class="p">])</span>
-            <span class="n">distances</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">dist</span><span class="p">))</span>
+    complete = df[df[target].notna()]
+    missing = df[df[target].isna()]
 
-        <span class="n">neighbors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])[:</span><span class="n">k</span><span class="p">]</span>
+    for idx in missing.index:
+        row = df.loc[idx, features]
 
-        <span class="n">numerator</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">denominator</span> <span class="o">=</span> <span class="mi">0</span>
+        distances = []
+        for i in complete.index:
+            dist = np.linalg.norm(row - complete.loc[i, features])
+            distances.append((i, dist))
 
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">neighbors</span><span class="p">:</span>
-            <span class="n">weight</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">d</span>
-            <span class="n">numerator</span> <span class="o">+=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">complete</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">target</span><span class="p">]</span>
-            <span class="n">denominator</span> <span class="o">+=</span> <span class="n">weight</span>
+        neighbors = sorted(distances, key=lambda x: x[1])[:k]
 
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
+        numerator = 0
+        denominator = 0
 
-    <span class="k">return</span> <span class="n">df</span>
+        for i, d in neighbors:
+            weight = 1 if d == 0 else 1/d
+            numerator += weight * complete.loc[i, target]
+            denominator += weight
+
+        df.loc[idx, target] = numerator / denominator
+
+    return df
 </pre></div>
 </div>
 </div>
@@ -916,13 +1056,14 @@ Data yang akan digunakan:
 <h2>Melakukan Imputasi<a class="headerlink" href="#melakukan-imputasi" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah missing sebelum imputasi:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+print(&quot;Jumlah missing sebelum imputasi:&quot;)
+print(df[&quot;Age&quot;].isna().sum())
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">wknn</span><span class="p">(</span><span class="n">scaled_data</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+result = wknn(scaled_data, &quot;Age&quot;, features, k=3)
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah missing setelah imputasi:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+print(&quot;\nJumlah missing setelah imputasi:&quot;)
+print(result[&quot;Age&quot;].isna().sum())
 </pre></div>
 </div>
 </div>
@@ -997,20 +1138,20 @@ x' = \frac{x}{10^j}
 <h3>Min-Max<a class="headerlink" href="#min-max" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from sklearn.preprocessing import MinMaxScaler
 
-<span class="c1"># Salin data agar aman</span>
-<span class="n">df_norm</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+# Salin data agar aman
+df_norm = df.copy()
 
-<span class="c1"># Inisialisasi scaler</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+# Inisialisasi scaler
+scaler = MinMaxScaler()
 
-<span class="c1"># Normalisasi kolom Fare</span>
-<span class="n">df_norm</span><span class="p">[</span><span class="s2">&quot;Fare_minmax&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_norm</span><span class="p">[[</span><span class="s2">&quot;Fare&quot;</span><span class="p">]])</span>
+# Normalisasi kolom Fare
+df_norm[&quot;Fare_minmax&quot;] = scaler.fit_transform(df_norm[[&quot;Fare&quot;]])
 
-<span class="c1"># Tampilkan hasil</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data sebelum dan sesudah normalisasi (Fare):&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df_norm</span><span class="p">[[</span><span class="s2">&quot;Fare&quot;</span><span class="p">,</span> <span class="s2">&quot;Fare_minmax&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+# Tampilkan hasil
+print(&quot;Data sebelum dan sesudah normalisasi (Fare):&quot;)
+print(df_norm[[&quot;Fare&quot;, &quot;Fare_minmax&quot;]].head(10))
 </pre></div>
 </div>
 </div>
@@ -1037,20 +1178,20 @@ x' = \frac{x}{10^j}
 <h3>Standardisasi<a class="headerlink" href="#standardisasi" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from sklearn.preprocessing import StandardScaler
 
-<span class="c1"># Salin data</span>
-<span class="n">df_std</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+# Salin data
+df_std = df.copy()
 
-<span class="c1"># Inisialisasi scaler</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+# Inisialisasi scaler
+scaler = StandardScaler()
 
-<span class="c1"># Standardisasi kolom Fare</span>
-<span class="n">df_std</span><span class="p">[</span><span class="s2">&quot;Fare_std&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_std</span><span class="p">[[</span><span class="s2">&quot;Fare&quot;</span><span class="p">]])</span>
+# Standardisasi kolom Fare
+df_std[&quot;Fare_std&quot;] = scaler.fit_transform(df_std[[&quot;Fare&quot;]])
 
-<span class="c1"># Tampilkan hasil</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Perbandingan sebelum dan sesudah standardisasi:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df_std</span><span class="p">[[</span><span class="s2">&quot;Fare&quot;</span><span class="p">,</span> <span class="s2">&quot;Fare_std&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+# Tampilkan hasil
+print(&quot;Perbandingan sebelum dan sesudah standardisasi:&quot;)
+print(df_std[[&quot;Fare&quot;, &quot;Fare_std&quot;]].head(10))
 </pre></div>
 </div>
 </div>
@@ -1078,18 +1219,18 @@ x' = \frac{x}{10^j}
 <h2>2.5 Normalisasi Manual<a class="headerlink" href="#normalisasi-manual" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">minmax</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def minmax(x):
+    return (x - x.min()) / (x.max() - x.min())
 
-<span class="c1"># Salin data</span>
-<span class="n">df_manual</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+# Salin data
+df_manual = df.copy()
 
-<span class="c1"># Terapkan normalisasi manual</span>
-<span class="n">df_manual</span><span class="p">[</span><span class="s2">&quot;Fare_manual&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">df_manual</span><span class="p">[</span><span class="s2">&quot;Fare&quot;</span><span class="p">])</span>
+# Terapkan normalisasi manual
+df_manual[&quot;Fare_manual&quot;] = minmax(df_manual[&quot;Fare&quot;])
 
-<span class="c1"># Tampilkan hasil</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Perbandingan sebelum dan sesudah normalisasi manual:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df_manual</span><span class="p">[[</span><span class="s2">&quot;Fare&quot;</span><span class="p">,</span> <span class="s2">&quot;Fare_manual&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+# Tampilkan hasil
+print(&quot;Perbandingan sebelum dan sesudah normalisasi manual:&quot;)
+print(df_manual[[&quot;Fare&quot;, &quot;Fare_manual&quot;]].head(10))
 </pre></div>
 </div>
 </div>
