@@ -1,0 +1,10 @@
+project:
+  name: pendata
+
+html:
+  theme:
+    name: sphinx_book_theme
+
+launch_buttons:
+  colab_url: https://colab.research.google.com/github/dapinfru/pendata/blob/main
+  binderhub_url: https://mybinder.org/v2/gh/dapinfru/pendata/main
