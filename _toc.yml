@@ -8,6 +8,4 @@ chapters:
   - file: "Data_Understanding"
   - file: "Data_Preparation"
   - file: "Missing Value Imputation dan Normalisasi Data pada Dataset Titanic"
-  - file: "notebooks"
-  - file: "markdown"
-  - file: "markdown-notebooks"
+  - file: "UTS-PENDAT"
