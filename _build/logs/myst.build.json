@@ -1,6 +1,8 @@
 {
   "input": {
-    "files": [],
+    "files": [
+      "materi"
+    ],
     "opts": {
       "execute": false,
       "executeParallel": 1,
@@ -12,7 +14,7 @@
       "xml": false,
       "meca": false,
       "cff": false,
-      "site": true,
+      "site": false,
       "html": false,
       "all": false,
       "doiBib": false,
@@ -23,8 +25,7 @@
       "ci": false,
       "maxSizeWebp": 1572864,
       "keepHost": false
-    },
-    "performSiteBuild": true
+    }
   },
   "exports": []
 }

@@ -1,0 +1,13 @@
+format: jb-book
+root: intro
+
+chapters:
+  - file: "240411100099-Dhafin Rizqika Akhmad"
+  - file: "Penambangan Data"
+  - file: "Bisnis_UnderStanding"
+  - file: "Data_Understanding"
+  - file: "Data_Preparation"
+  - file: "Missing Value Imputation dan Normalisasi Data pada Dataset Titanic"
+  - file: "notebooks"
+  - file: "markdown"
+  - file: "markdown-notebooks"
