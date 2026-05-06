@@ -2,7 +2,6 @@ format: jb-book
 root: intro
 
 chapters:
-  - file: "240411100099-Dhafin Rizqika Akhmad"
   - file: "Penambangan Data"
   - file: "Bisnis_UnderStanding"
     title: "Pertemuan 2 | Bisnis UnderStanding"
