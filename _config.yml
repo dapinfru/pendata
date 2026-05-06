@@ -1,9 +1,15 @@
-project:
-  name: pendata
+title: Pendata
+author: Dhafin Rizqika Akhmad
+
+execute:
+  execute_notebooks: off
 
 html:
-  theme:
-    name: sphinx_book_theme
+  use_repository_button: true
+
+repository:
+  url: https://github.com/dapinfru/pendata
+  branch: main
 
 launch_buttons:
   colab_url: https://colab.research.google.com/github/dapinfru/pendata/blob/main

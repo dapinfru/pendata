@@ -1,0 +1,1452 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Missing Values Imputation dan Normalisasi Data pada Dataset Titanic &#8212; Pendata</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/vendor/fontawesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/copybutton_funcs.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/documentation_options.js"></script>
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/scripts/bootstrap.js"></script>
+    <script src="../_static/scripts/pydata-sphinx-theme.js"></script>
+    <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_sources/Missing Value Imputation dan Normalisasi Data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Pendata</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Biodata
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../240411100099-Dhafin%20Rizqika%20Akhmad.html">240411100099 - Dhafin Rizqika Akhmad</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Penambangan%20Data.html">Apa Itu Penambangan Data</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Bisnis_UnderStanding.html">business understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Data_Understanding.html">Data Understanding</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/dapinfru/pendata/main/v2/gh/dapinfru/pendata/main?urlpath=tree/_sources/Missing Value Imputation dan Normalisasi Data.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/dapinfru/pendata/blob/main/github/dapinfru/pendata/blob/main/_sources/Missing Value Imputation dan Normalisasi Data.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/dapinfru/pendata" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_sources/Missing Value Imputation dan Normalisasi Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Missing Values Imputation dan Normalisasi Data pada Dataset Titanic</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Missing Values Imputation dan Normalisasi Data pada Dataset Titanic</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values-imputation-dengan-metode-wknn">1. Missing Values Imputation dengan Metode WKNN</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-missing-values">1.1 Pengertian Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-weighted-k-nearest-neighbor-wknn">1.2 Metode Weighted K-Nearest Neighbor (WKNN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-metode-wknn">1.3 Langkah-langkah Metode WKNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-yang-digunakan">1.4 Rumus yang Digunakan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-normalisasi-min-max">a. Normalisasi (Min-Max)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-bobot-weight">b. Bobot (Weight)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-imputasi">c. Imputasi</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-yang-digunakan">1.5 Dataset yang Digunakan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-wknn-secara-manual">1.6 Perhitungan WKNN Secara Manual</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-missing-value">1. Menentukan Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-normalisasi-data">2. Melakukan Normalisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-dan-similarity">3. Menghitung Jarak dan Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-penyebut">4. Menghitung Penyebut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pembilang">5. Menghitung Pembilang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-nilai-imputasi">6. Menghitung Nilai Imputasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-wknn-menggunakan-python">1.7 Implementasi WKNN Menggunakan Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dataset">Membaca Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Menentukan Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">Normalisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-wknn">Fungsi WKNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-imputasi">Melakukan Imputasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. Normalisasi Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">2.1 Pengertian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-normalisasi">2.2 Tujuan Normalisasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis-normalisasi">2.3 Jenis-jenis Normalisasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling">3. Decimal Scaling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dengan-python">2.4 Implementasi dengan Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max">Min-Max</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardisasi">Standardisasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-manual">2.5 Normalisasi Manual</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">3. Kesimpulan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan">4. Catatan</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="missing-values-imputation-dan-normalisasi-data-pada-dataset-titanic">
+<h1>Missing Values Imputation dan Normalisasi Data pada Dataset Titanic<a class="headerlink" href="#missing-values-imputation-dan-normalisasi-data-pada-dataset-titanic" title="Permalink to this heading">#</a></h1>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="missing-values-imputation-dengan-metode-wknn">
+<h1>1. Missing Values Imputation dengan Metode WKNN<a class="headerlink" href="#missing-values-imputation-dengan-metode-wknn" title="Permalink to this heading">#</a></h1>
+<section id="pengertian-missing-values">
+<h2>1.1 Pengertian Missing Values<a class="headerlink" href="#pengertian-missing-values" title="Permalink to this heading">#</a></h2>
+<p>Missing values adalah kondisi dimana suatu dataset memiliki nilai atribut yang tidak terisi (kosong). Hal ini dapat terjadi karena berbagai faktor seperti kesalahan pencatatan, data yang tidak tersedia, atau proses pengumpulan data yang tidak lengkap.</p>
+<p>Keberadaan missing values dapat menurunkan kualitas data dan memengaruhi hasil analisis. Oleh karena itu, diperlukan teknik untuk menangani masalah tersebut, salah satunya adalah <strong>imputasi data</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="metode-weighted-k-nearest-neighbor-wknn">
+<h2>1.2 Metode Weighted K-Nearest Neighbor (WKNN)<a class="headerlink" href="#metode-weighted-k-nearest-neighbor-wknn" title="Permalink to this heading">#</a></h2>
+<p>Metode WKNN merupakan pengembangan dari metode KNN (K-Nearest Neighbor). Metode ini digunakan untuk memperkirakan nilai yang hilang berdasarkan kemiripan data dengan data lain yang lengkap.</p>
+<p>Perbedaan utama:</p>
+<ul class="simple">
+<li><p>KNN → semua tetangga memiliki bobot yang sama</p></li>
+<li><p>WKNN → tetangga yang lebih dekat memiliki bobot lebih besar</p></li>
+</ul>
+<p>Dengan demikian, data yang lebih mirip akan memberikan kontribusi yang lebih besar dalam proses imputasi.</p>
+</section>
+<hr class="docutils" />
+<section id="langkah-langkah-metode-wknn">
+<h2>1.3 Langkah-langkah Metode WKNN<a class="headerlink" href="#langkah-langkah-metode-wknn" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Mengidentifikasi data yang memiliki missing value</p></li>
+<li><p>Menentukan fitur yang digunakan sebagai pembanding</p></li>
+<li><p>Melakukan normalisasi data</p></li>
+<li><p>Menghitung jarak antar data</p></li>
+<li><p>Menentukan K tetangga terdekat</p></li>
+<li><p>Menghitung bobot masing-masing tetangga</p></li>
+<li><p>Menghitung nilai imputasi</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="rumus-yang-digunakan">
+<h2>1.4 Rumus yang Digunakan<a class="headerlink" href="#rumus-yang-digunakan" title="Permalink to this heading">#</a></h2>
+<section id="a-normalisasi-min-max">
+<h3>a. Normalisasi (Min-Max)<a class="headerlink" href="#a-normalisasi-min-max" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+x' = \frac{x - x_{min}}{x_{max} - x_{min}}
+\]</div>
+</section>
+<section id="b-bobot-weight">
+<h3>b. Bobot (Weight)<a class="headerlink" href="#b-bobot-weight" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+w_i = \frac{1}{d_i}
+\]</div>
+</section>
+<section id="c-imputasi">
+<h3>c. Imputasi<a class="headerlink" href="#c-imputasi" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\hat{x} = \frac{\sum_{i=1}^{k} w_i x_i}{\sum_{i=1}^{k} w_i}
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d_i\)</span> = jarak data ke-i terhadap data target</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_i\)</span> = bobot</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> = nilai atribut dari tetangga</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="dataset-yang-digunakan">
+<h1>1.5 Dataset yang Digunakan<a class="headerlink" href="#dataset-yang-digunakan" title="Permalink to this heading">#</a></h1>
+<p>Dataset yang digunakan adalah <strong>Titanic Dataset</strong> yang berisi data penumpang kapal Titanic.</p>
+<p>Dataset ini memiliki sekitar <strong>891 data</strong> dengan beberapa atribut penting, antara lain:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Deskripsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Age</p></td>
+<td><p>Umur penumpang</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fare</p></td>
+<td><p>Harga tiket</p></td>
+</tr>
+<tr class="row-even"><td><p>Pclass</p></td>
+<td><p>Kelas penumpang</p></td>
+</tr>
+<tr class="row-odd"><td><p>SibSp</p></td>
+<td><p>Jumlah saudara/pasangan</p></td>
+</tr>
+<tr class="row-even"><td><p>Parch</p></td>
+<td><p>Jumlah keluarga</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dalam dataset ini:</p>
+<ul class="simple">
+<li><p>Kolom <strong>Age</strong> memiliki banyak missing values</p></li>
+<li><p>Kolom <strong>Cabin</strong> memiliki terlalu banyak missing sehingga tidak digunakan</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="perhitungan-wknn-secara-manual">
+<h1>1.6 Perhitungan WKNN Secara Manual<a class="headerlink" href="#perhitungan-wknn-secara-manual" title="Permalink to this heading">#</a></h1>
+<section id="menentukan-missing-value">
+<h2>1. Menentukan Missing Value<a class="headerlink" href="#menentukan-missing-value" title="Permalink to this heading">#</a></h2>
+<p>Misalkan terdapat data berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data</p></th>
+<th class="head"><p>Fare</p></th>
+<th class="head"><p>Age</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>10</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>20</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>30</p></td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai Age pada data C tidak diketahui dan akan dihitung menggunakan WKNN.</p>
+</section>
+<hr class="docutils" />
+<section id="melakukan-normalisasi-data">
+<h2>2. Melakukan Normalisasi Data<a class="headerlink" href="#melakukan-normalisasi-data" title="Permalink to this heading">#</a></h2>
+<p>Normalisasi digunakan agar semua fitur memiliki skala yang sama sehingga tidak ada fitur yang mendominasi.</p>
+<p>Rumus:
+$<span class="math notranslate nohighlight">\(
+x' = \frac{x - min}{max - min}
+\)</span>$</p>
+</section>
+<hr class="docutils" />
+<section id="menghitung-jarak-dan-similarity">
+<h2>3. Menghitung Jarak dan Similarity<a class="headerlink" href="#menghitung-jarak-dan-similarity" title="Permalink to this heading">#</a></h2>
+<p>Jarak:</p>
+<ul class="simple">
+<li><p>C ke A = 20</p></li>
+<li><p>C ke B = 10</p></li>
+</ul>
+<p>Similarity:
+$<span class="math notranslate nohighlight">\(
+S_i = \frac{1}{d_i}
+\)</span>$</p>
+<ul class="simple">
+<li><p>A = 0.05</p></li>
+<li><p>B = 0.1</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="menghitung-penyebut">
+<h2>4. Menghitung Penyebut<a class="headerlink" href="#menghitung-penyebut" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+0.05 + 0.1 = 0.15
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="menghitung-pembilang">
+<h2>5. Menghitung Pembilang<a class="headerlink" href="#menghitung-pembilang" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+(0.05 \cdot 20) + (0.1 \cdot 25) = 3.5
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="menghitung-nilai-imputasi">
+<h2>6. Menghitung Nilai Imputasi<a class="headerlink" href="#menghitung-nilai-imputasi" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\hat{x} = \frac{3.5}{0.15} = 23.33
+\]</div>
+<p>Nilai tersebut digunakan untuk menggantikan missing value.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="implementasi-wknn-menggunakan-python">
+<h1>1.7 Implementasi WKNN Menggunakan Python<a class="headerlink" href="#implementasi-wknn-menggunakan-python" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+## Import Library
+
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+</pre></div>
+</div>
+</div>
+</div>
+<section id="membaca-dataset">
+<h2>Membaca Dataset<a class="headerlink" href="#membaca-dataset" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+df = pd.read_csv(&quot;Titanic-Dataset.csv&quot;)
+df.head()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-08c5e9ff-6795-406b-9484-3254babfa40e" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-08c5e9ff-6795-406b-9484-3254babfa40e')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-08c5e9ff-6795-406b-9484-3254babfa40e button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-08c5e9ff-6795-406b-9484-3254babfa40e');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+<section id="id1">
+<h2>Menentukan Missing Value<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+
+df.isnull().sum()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PassengerId</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Survived</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Pclass</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Sex</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td>177</td>
+    </tr>
+    <tr>
+      <th>SibSp</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Parch</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Ticket</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Fare</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Cabin</th>
+      <td>687</td>
+    </tr>
+    <tr>
+      <th>Embarked</th>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div><br><label><b>dtype:</b> int64</label></div></div>
+</div>
+<p>##Menentukan fitur</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>features = [&quot;Fare&quot;, &quot;Pclass&quot;, &quot;SibSp&quot;, &quot;Parch&quot;]
+data = df[[&quot;Age&quot;] + features].copy()
+
+print(&quot;Fitur yang digunakan untuk menghitung kemiripan:&quot;)
+print(features)
+
+print(&quot;\nData yang akan digunakan:&quot;)
+print(data.head())
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur yang digunakan untuk menghitung kemiripan:
+[&#39;Fare&#39;, &#39;Pclass&#39;, &#39;SibSp&#39;, &#39;Parch&#39;]
+
+Data yang akan digunakan:
+    Age     Fare  Pclass  SibSp  Parch
+0  22.0   7.2500       3      1      0
+1  38.0  71.2833       1      1      0
+2  26.0   7.9250       3      0      0
+3  35.0  53.1000       1      1      0
+4  35.0   8.0500       3      0      0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="normalisasi-data">
+<h2>Normalisasi Data<a class="headerlink" href="#normalisasi-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+scaled = pd.DataFrame(
+    scaler.fit_transform(data[features]),
+    columns=features,
+    index=data.index
+)
+
+scaled_data = pd.concat([data[[&quot;Age&quot;]], scaled], axis=1)
+
+print(&quot;Data setelah standardisasi:&quot;)
+print(scaled_data.head())
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data setelah standardisasi:
+    Age      Fare    Pclass     SibSp     Parch
+0  22.0 -0.502445  0.827377  0.432793 -0.473674
+1  38.0  0.786845 -1.566107  0.432793 -0.473674
+2  26.0 -0.488854  0.827377 -0.474545 -0.473674
+3  35.0  0.420730 -1.566107  0.432793 -0.473674
+4  35.0 -0.486337  0.827377 -0.474545 -0.473674
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fungsi-wknn">
+<h2>Fungsi WKNN<a class="headerlink" href="#fungsi-wknn" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+
+
+def wknn(df, target, features, k=3):
+    df = df.copy()
+
+    complete = df[df[target].notna()]
+    missing = df[df[target].isna()]
+
+    for idx in missing.index:
+        row = df.loc[idx, features]
+
+        distances = []
+        for i in complete.index:
+            dist = np.linalg.norm(row - complete.loc[i, features])
+            distances.append((i, dist))
+
+        neighbors = sorted(distances, key=lambda x: x[1])[:k]
+
+        numerator = 0
+        denominator = 0
+
+        for i, d in neighbors:
+            weight = 1 if d == 0 else 1/d
+            numerator += weight * complete.loc[i, target]
+            denominator += weight
+
+        df.loc[idx, target] = numerator / denominator
+
+    return df
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="melakukan-imputasi">
+<h2>Melakukan Imputasi<a class="headerlink" href="#melakukan-imputasi" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+print(&quot;Jumlah missing sebelum imputasi:&quot;)
+print(df[&quot;Age&quot;].isna().sum())
+
+result = wknn(scaled_data, &quot;Age&quot;, features, k=3)
+
+print(&quot;\nJumlah missing setelah imputasi:&quot;)
+print(result[&quot;Age&quot;].isna().sum())
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah missing sebelum imputasi:
+177
+
+Jumlah missing setelah imputasi:
+0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>2. Normalisasi Data<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<section id="pengertian">
+<h2>2.1 Pengertian<a class="headerlink" href="#pengertian" title="Permalink to this heading">#</a></h2>
+<p>Normalisasi adalah proses transformasi data numerik ke dalam skala tertentu agar setiap atribut memiliki kontribusi yang seimbang dalam analisis.</p>
+</section>
+<hr class="docutils" />
+<section id="tujuan-normalisasi">
+<h2>2.2 Tujuan Normalisasi<a class="headerlink" href="#tujuan-normalisasi" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Menghindari dominasi fitur tertentu</p></li>
+<li><p>Mempercepat proses pembelajaran model</p></li>
+<li><p>Meningkatkan akurasi analisis</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="jenis-jenis-normalisasi">
+<h2>2.3 Jenis-jenis Normalisasi<a class="headerlink" href="#jenis-jenis-normalisasi" title="Permalink to this heading">#</a></h2>
+<section id="min-max-normalization">
+<h3>1. Min-Max Normalization<a class="headerlink" href="#min-max-normalization" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+x' = \frac{x - x_{min}}{x_{max} - x_{min}}
+\]</div>
+<p>Contoh:
+Data: 10, 20, 30
+Hasil: 0, 0.5, 1</p>
+</section>
+<hr class="docutils" />
+<section id="z-score-normalization">
+<h3>2. Z-Score Normalization<a class="headerlink" href="#z-score-normalization" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+x' = \frac{x - \mu}{\sigma}
+\]</div>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Mean = 20</p></li>
+<li><p>Std = 10</p></li>
+</ul>
+<p>Hasil: -1, 0, 1</p>
+</section>
+<hr class="docutils" />
+<section id="decimal-scaling">
+<h3>3. Decimal Scaling<a class="headerlink" href="#decimal-scaling" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+x' = \frac{x}{10^j}
+\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="implementasi-dengan-python">
+<h2>2.4 Implementasi dengan Python<a class="headerlink" href="#implementasi-dengan-python" title="Permalink to this heading">#</a></h2>
+<section id="min-max">
+<h3>Min-Max<a class="headerlink" href="#min-max" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from sklearn.preprocessing import MinMaxScaler
+
+# Salin data agar aman
+df_norm = df.copy()
+
+# Inisialisasi scaler
+scaler = MinMaxScaler()
+
+# Normalisasi kolom Fare
+df_norm[&quot;Fare_minmax&quot;] = scaler.fit_transform(df_norm[[&quot;Fare&quot;]])
+
+# Tampilkan hasil
+print(&quot;Data sebelum dan sesudah normalisasi (Fare):&quot;)
+print(df_norm[[&quot;Fare&quot;, &quot;Fare_minmax&quot;]].head(10))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data sebelum dan sesudah normalisasi (Fare):
+      Fare  Fare_minmax
+0   7.2500     0.014151
+1  71.2833     0.139136
+2   7.9250     0.015469
+3  53.1000     0.103644
+4   8.0500     0.015713
+5   8.4583     0.016510
+6  51.8625     0.101229
+7  21.0750     0.041136
+8  11.1333     0.021731
+9  30.0708     0.058694
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="standardisasi">
+<h3>Standardisasi<a class="headerlink" href="#standardisasi" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from sklearn.preprocessing import StandardScaler
+
+# Salin data
+df_std = df.copy()
+
+# Inisialisasi scaler
+scaler = StandardScaler()
+
+# Standardisasi kolom Fare
+df_std[&quot;Fare_std&quot;] = scaler.fit_transform(df_std[[&quot;Fare&quot;]])
+
+# Tampilkan hasil
+print(&quot;Perbandingan sebelum dan sesudah standardisasi:&quot;)
+print(df_std[[&quot;Fare&quot;, &quot;Fare_std&quot;]].head(10))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Perbandingan sebelum dan sesudah standardisasi:
+      Fare  Fare_std
+0   7.2500 -0.502445
+1  71.2833  0.786845
+2   7.9250 -0.488854
+3  53.1000  0.420730
+4   8.0500 -0.486337
+5   8.4583 -0.478116
+6  51.8625  0.395814
+7  21.0750 -0.224083
+8  11.1333 -0.424256
+9  30.0708 -0.042956
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="normalisasi-manual">
+<h2>2.5 Normalisasi Manual<a class="headerlink" href="#normalisasi-manual" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def minmax(x):
+    return (x - x.min()) / (x.max() - x.min())
+
+# Salin data
+df_manual = df.copy()
+
+# Terapkan normalisasi manual
+df_manual[&quot;Fare_manual&quot;] = minmax(df_manual[&quot;Fare&quot;])
+
+# Tampilkan hasil
+print(&quot;Perbandingan sebelum dan sesudah normalisasi manual:&quot;)
+print(df_manual[[&quot;Fare&quot;, &quot;Fare_manual&quot;]].head(10))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Perbandingan sebelum dan sesudah normalisasi manual:
+      Fare  Fare_manual
+0   7.2500     0.014151
+1  71.2833     0.139136
+2   7.9250     0.015469
+3  53.1000     0.103644
+4   8.0500     0.015713
+5   8.4583     0.016510
+6  51.8625     0.101229
+7  21.0750     0.041136
+8  11.1333     0.021731
+9  30.0708     0.058694
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="kesimpulan">
+<h1>3. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Missing values dapat diatasi menggunakan metode WKNN</p></li>
+<li><p>WKNN memberikan bobot lebih besar pada data yang lebih dekat</p></li>
+<li><p>Dataset Titanic cocok digunakan karena memiliki missing value pada Age</p></li>
+<li><p>Normalisasi sangat penting sebelum perhitungan jarak</p></li>
+<li><p>Normalisasi dapat dilakukan menggunakan sklearn maupun manual</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="catatan">
+<h1>4. Catatan<a class="headerlink" href="#catatan" title="Permalink to this heading">#</a></h1>
+<p>Pemilihan nilai K dan fitur yang digunakan sangat berpengaruh terhadap hasil imputasi, sehingga perlu disesuaikan dengan kondisi dataset.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./_sources"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Missing Values Imputation dan Normalisasi Data pada Dataset Titanic</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values-imputation-dengan-metode-wknn">1. Missing Values Imputation dengan Metode WKNN</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-missing-values">1.1 Pengertian Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-weighted-k-nearest-neighbor-wknn">1.2 Metode Weighted K-Nearest Neighbor (WKNN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-metode-wknn">1.3 Langkah-langkah Metode WKNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-yang-digunakan">1.4 Rumus yang Digunakan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-normalisasi-min-max">a. Normalisasi (Min-Max)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-bobot-weight">b. Bobot (Weight)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-imputasi">c. Imputasi</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-yang-digunakan">1.5 Dataset yang Digunakan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-wknn-secara-manual">1.6 Perhitungan WKNN Secara Manual</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-missing-value">1. Menentukan Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-normalisasi-data">2. Melakukan Normalisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-dan-similarity">3. Menghitung Jarak dan Similarity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-penyebut">4. Menghitung Penyebut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pembilang">5. Menghitung Pembilang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-nilai-imputasi">6. Menghitung Nilai Imputasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-wknn-menggunakan-python">1.7 Implementasi WKNN Menggunakan Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dataset">Membaca Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Menentukan Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">Normalisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-wknn">Fungsi WKNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-imputasi">Melakukan Imputasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. Normalisasi Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">2.1 Pengertian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-normalisasi">2.2 Tujuan Normalisasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis-normalisasi">2.3 Jenis-jenis Normalisasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-normalization">1. Min-Max Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-normalization">2. Z-Score Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-scaling">3. Decimal Scaling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dengan-python">2.4 Implementasi dengan Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max">Min-Max</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardisasi">Standardisasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-manual">2.5 Normalisasi Manual</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">3. Kesimpulan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan">4. Catatan</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dhafin Rizqika Akhmad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
