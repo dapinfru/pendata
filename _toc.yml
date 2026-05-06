@@ -8,4 +8,5 @@ chapters:
   - file: "Data_Understanding"
   - file: "Data_Preparation"
   - file: "Missing Value Imputation dan Normalisasi Data"
-  - file: "UTS_PENDAT.ipynb"
+  - file: "UTS_PENDAT"
+    title: "UTS PENAMBANGAN DATA"
