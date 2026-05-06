@@ -7,7 +7,7 @@ chapters:
     title: "Pertemuan 2 | Bisnis UnderStanding"
   - file: "Data_Understanding"
     title: "Pertemuan 2 | Data UnderStanding"
-  - file: "Data_Preparation"
+  - file: "Data Preparation"
     title: "Pertemuan 2 | Data Preparation"
   - file: "Missing Value Imputation dan Normalisasi Data"
     title: "Pertemuan 5 | Missing Value & Normalisasi Data"
