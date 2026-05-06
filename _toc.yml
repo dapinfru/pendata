@@ -16,3 +16,5 @@ chapters:
     title: "UTS PENAMBANGAN DATA"
   - file: "Analisis_Data_Naive_Bayes"
     title: "Pertemuan 10 |Naive Bayes"
+  - file: "Decision_Tree"
+    title: "Pertemuan 11 |Decision_Tree"
