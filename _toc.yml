@@ -5,15 +5,21 @@ chapters:
   - file: "Penambangan Data"
   - file: "Bisnis_UnderStanding"
     title: "Pertemuan 2 | Bisnis UnderStanding"
+
   - file: "Data_Understanding"
     title: "Pertemuan 2 | Data UnderStanding"
+
   - file: "Data Preparation"
     title: "Pertemuan 2 | Data Preparation"
+
   - file: "Missing Value Imputation dan Normalisasi Data"
     title: "Pertemuan 5 | Missing Value & Normalisasi Data"
+
   - file: "UTS_PENDAT"
     title: "UTS PENAMBANGAN DATA"
+
   - file: "Analisis_Data_Naive_Bayes"
     title: "Pertemuan 10 |Naive Bayes"
+    
   - file: "Decision_Tree"
     title: "Pertemuan 11 |Decision_Tree"
