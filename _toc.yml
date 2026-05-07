@@ -15,6 +15,9 @@ chapters:
   - file: "Missing Value Imputation dan Normalisasi Data"
     title: "Pertemuan 5 | Missing Value & Normalisasi Data"
 
+  - file: "Reduksi_Dinamis"
+    title: "Pertemuan 7 | Reduksi Dinamis ( Transformasi PCA )"
+
   - file: "UTS_PENDAT"
     title: "UTS PENAMBANGAN DATA"
 

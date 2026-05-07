@@ -1,0 +1,1544 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Pertemuan 7 | Reduksi Dinamis &#8212; Pendata</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/vendor/fontawesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/copybutton_funcs.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/underscore-1.13.1.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/jquery-3.6.0.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/documentation_options.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/scripts/bootstrap.js"></script>
+    <script src="_static/scripts/pydata-sphinx-theme.js"></script>
+    <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Reduksi_Dinamis';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UTS PENAMBANGAN DATA" href="UTS_PENDAT.html" />
+    <link rel="prev" title="Pertemuan 5 | Missing Value &amp; Normalisasi Data Titanic" href="Missing%20Value%20Imputation%20dan%20Normalisasi%20Data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Profil.jpeg" class="logo__image only-light" alt="Pendata - Home"/>
+    <script>document.write(`<img src="_static/Profil.jpeg" class="logo__image only-dark" alt="Pendata - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Biodata
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Penambangan%20Data.html">Apa Itu Penambangan Data</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bisnis_UnderStanding.html">Pertemuan 2 | Bisnis UnderStanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html">Pertemuan 2 | Data UnderStanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Pertemuan 2 | Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Missing%20Value%20Imputation%20dan%20Normalisasi%20Data.html">Pertemuan 5 | Missing Value &amp; Normalisasi Data Titanic</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pertemuan 7 | Reduksi Dinamis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="UTS_PENDAT.html"><strong>UTS PENAMBANGAN DATA</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Analisis_Data_Naive_Bayes.html">Pertemuan 10 | Analisis Menggunakan Naive Bayes</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Decision_Tree.html">Pertemuan 11 | Decision Tree</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/dapinfru/pendata/main/v2/gh/dapinfru/pendata/main?urlpath=tree/Reduksi_Dinamis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/dapinfru/pendata/blob/main/github/dapinfru/pendata/blob/main/Reduksi_Dinamis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/dapinfru/pendata" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Reduksi_Dinamis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pertemuan 7 | Reduksi Dinamis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pertemuan 7 | Reduksi Dinamis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dan-implementasi-data-science">Konsep dan Implementasi Data Science</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat-data-science">Manfaat Data Science</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membantu-pengambilan-keputusan-bisnis">1. Membantu Pengambilan Keputusan Bisnis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memahami-pelanggan-dan-pasar">2. Memahami Pelanggan dan Pasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meningkatkan-kualitas-layanan">3. Meningkatkan Kualitas Layanan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-scientist">Data Scientist</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-data-scientist">Tugas Data Scientist</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengumpulkan-data">1. Mengumpulkan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-data">2. Membersihkan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-analisis-data">3. Melakukan Analisis Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menemukan-pola-pada-data">4. Menemukan Pola pada Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-model-machine-learning">5. Membuat Model Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-visualisasi-data">6. Membuat Visualisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memberikan-rekomendasi-bisnis">7. Memberikan Rekomendasi Bisnis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-yang-dibutuhkan-data-scientist">Skill yang Dibutuhkan Data Scientist</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning">1. Machine Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik">2. Statistik</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#programming">3. Programming</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">NumPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">Scikit-Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#database">4. Database</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm">Metodologi CRISP-DM</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-atribut-data">Jenis Atribut Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-attribute">1. Categorical Attribute</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinal-attribute">2. Ordinal Attribute</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#numeric-attribute">3. Numeric Attribute</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-numeric-diskrit">a. Numeric Diskrit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-numeric-kontinu">b. Numeric Kontinu</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-quality">Data Quality</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi">1. Akurasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelengkapan">2. Kelengkapan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsistensi">3. Konsistensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ketepatan-waktu">4. Ketepatan Waktu</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">Missing Value</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-mengatasi-missing-value">Cara Mengatasi Missing Value</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menghapus-data">1. Menghapus Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-missing-value">2. Imputasi Missing Value</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-mean">a. Mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-median">b. Median</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-modus">c. Modus</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-imputasi-mean-menggunakan-python">Contoh Imputasi Mean Menggunakan Python</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pertemuan-7-reduksi-dinamis">
+<h1>Pertemuan 7 | Reduksi Dinamis<a class="headerlink" href="#pertemuan-7-reduksi-dinamis" title="Permalink to this heading">#</a></h1>
+<section id="konsep-dan-implementasi-data-science">
+<h2>Konsep dan Implementasi Data Science<a class="headerlink" href="#konsep-dan-implementasi-data-science" title="Permalink to this heading">#</a></h2>
+<p>Data Science adalah bidang ilmu yang mempelajari proses pengumpulan, pengolahan, analisis, dan interpretasi data untuk menghasilkan informasi yang berguna dalam pengambilan keputusan. Data Science menggabungkan berbagai disiplin ilmu seperti statistik, machine learning, data mining, pemrograman, dan visualisasi data.</p>
+<p>Pada era digital saat ini, jumlah data meningkat sangat cepat. Data berasal dari media sosial, transaksi bisnis, sensor, aplikasi mobile, website, dan berbagai sumber lainnya. Oleh karena itu, diperlukan teknik modern untuk mengolah data dalam jumlah besar agar dapat menghasilkan informasi yang bermanfaat.</p>
+<p>Tujuan utama Data Science:</p>
+<ul class="simple">
+<li><p>Membantu pengambilan keputusan berbasis data</p></li>
+<li><p>Menemukan pola tersembunyi dalam data</p></li>
+<li><p>Membuat prediksi</p></li>
+<li><p>Meningkatkan efisiensi bisnis</p></li>
+<li><p>Membantu otomatisasi sistem cerdas</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="manfaat-data-science">
+<h1>Manfaat Data Science<a class="headerlink" href="#manfaat-data-science" title="Permalink to this heading">#</a></h1>
+<section id="membantu-pengambilan-keputusan-bisnis">
+<h2>1. Membantu Pengambilan Keputusan Bisnis<a class="headerlink" href="#membantu-pengambilan-keputusan-bisnis" title="Permalink to this heading">#</a></h2>
+<p>Data Science membantu perusahaan dalam mengambil keputusan berdasarkan data yang valid dan terukur, bukan hanya berdasarkan intuisi atau perkiraan semata. Dengan memanfaatkan data historis dan analisis statistik, perusahaan dapat memahami kondisi bisnis secara lebih mendalam dan objektif.</p>
+<p>Dalam dunia bisnis modern, keputusan yang cepat dan tepat sangat penting. Oleh karena itu, Data Science menjadi alat yang sangat membantu untuk menghasilkan keputusan yang lebih akurat dan efisien.</p>
+<p>Melalui proses analisis data, perusahaan dapat:</p>
+<ul class="simple">
+<li><p>Mengetahui performa penjualan</p></li>
+<li><p>Menentukan strategi pemasaran yang efektif</p></li>
+<li><p>Mengetahui produk yang paling diminati pelanggan</p></li>
+<li><p>Mengidentifikasi pelanggan potensial</p></li>
+<li><p>Mengurangi risiko kerugian bisnis</p></li>
+<li><p>Membantu proses forecasting atau prediksi bisnis di masa depan</p></li>
+</ul>
+<p>Contoh penerapan:</p>
+<ul class="simple">
+<li><p>Perusahaan e-commerce menggunakan data pembelian pelanggan untuk menentukan produk yang paling laris.</p></li>
+<li><p>Bank menggunakan analisis data untuk menentukan apakah pengajuan kredit diterima atau ditolak.</p></li>
+<li><p>Perusahaan transportasi menggunakan data perjalanan untuk memprediksi jumlah penumpang pada waktu tertentu.</p></li>
+</ul>
+<p>Dengan adanya Data Science, perusahaan dapat mengambil keputusan secara lebih cepat, akurat, dan berbasis fakta.</p>
+</section>
+<hr class="docutils" />
+<section id="memahami-pelanggan-dan-pasar">
+<h2>2. Memahami Pelanggan dan Pasar<a class="headerlink" href="#memahami-pelanggan-dan-pasar" title="Permalink to this heading">#</a></h2>
+<p>Salah satu manfaat terbesar Data Science adalah membantu perusahaan memahami pelanggan dan kondisi pasar secara lebih mendalam. Data pelanggan dapat dianalisis untuk mengetahui kebutuhan, kebiasaan, preferensi, dan pola perilaku pelanggan.</p>
+<p>Perusahaan dapat mengumpulkan data pelanggan dari berbagai sumber, seperti:</p>
+<ul class="simple">
+<li><p>Riwayat transaksi</p></li>
+<li><p>Aktivitas website</p></li>
+<li><p>Media sosial</p></li>
+<li><p>Aplikasi mobile</p></li>
+<li><p>Survei pelanggan</p></li>
+</ul>
+<p>Dari data tersebut, perusahaan dapat mengetahui:</p>
+<ul class="simple">
+<li><p>Produk apa yang paling sering dibeli</p></li>
+<li><p>Waktu pelanggan sering melakukan transaksi</p></li>
+<li><p>Lokasi pelanggan</p></li>
+<li><p>Kategori pelanggan tertentu</p></li>
+<li><p>Kebiasaan dan preferensi pelanggan</p></li>
+</ul>
+<p>Selain memahami pelanggan, Data Science juga membantu perusahaan memahami kondisi pasar dan tren yang sedang berkembang.</p>
+<p>Contoh penerapan:</p>
+<ul class="simple">
+<li><p>Marketplace menggunakan sistem rekomendasi berdasarkan histori pembelian pelanggan.</p></li>
+<li><p>Perusahaan makanan menganalisis tren penjualan untuk mengetahui makanan yang sedang populer.</p></li>
+<li><p>Media sosial menggunakan analisis perilaku pengguna untuk menampilkan konten yang relevan.</p></li>
+</ul>
+<p>Dengan memahami pelanggan dan pasar, perusahaan dapat:</p>
+<ul class="simple">
+<li><p>Meningkatkan kepuasan pelanggan</p></li>
+<li><p>Membuat strategi pemasaran yang lebih tepat sasaran</p></li>
+<li><p>Menyesuaikan produk dengan kebutuhan pasar</p></li>
+<li><p>Meningkatkan loyalitas pelanggan</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="meningkatkan-kualitas-layanan">
+<h2>3. Meningkatkan Kualitas Layanan<a class="headerlink" href="#meningkatkan-kualitas-layanan" title="Permalink to this heading">#</a></h2>
+<p>Data Science juga digunakan untuk meningkatkan kualitas layanan kepada pelanggan. Dengan analisis data, perusahaan dapat mengetahui kelemahan sistem layanan dan mencari solusi yang lebih efektif.</p>
+<p>Analisis data membantu perusahaan memahami pengalaman pelanggan saat menggunakan produk atau layanan. Dari hasil analisis tersebut, perusahaan dapat memperbaiki sistem pelayanan agar lebih cepat, nyaman, dan efisien.</p>
+<p>Contoh peningkatan layanan menggunakan Data Science:</p>
+<ul class="simple">
+<li><p>Sistem rekomendasi produk pada e-commerce</p></li>
+<li><p>Chatbot otomatis untuk menjawab pertanyaan pelanggan</p></li>
+<li><p>Sistem deteksi keluhan pelanggan</p></li>
+<li><p>Analisis kepuasan pelanggan melalui review dan rating</p></li>
+</ul>
+<p>Data Science juga dapat membantu perusahaan memberikan layanan yang lebih personal kepada pelanggan.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Netflix merekomendasikan film berdasarkan riwayat tontonan pengguna.</p></li>
+<li><p>Spotify merekomendasikan musik berdasarkan lagu yang sering diputar.</p></li>
+<li><p>E-commerce memberikan rekomendasi produk sesuai minat pelanggan.</p></li>
+</ul>
+<p>Selain itu, perusahaan dapat menggunakan analisis sentimen untuk mengetahui pendapat pelanggan terhadap produk atau layanan melalui media sosial dan ulasan pelanggan.</p>
+<p>Manfaat yang diperoleh:</p>
+<ul class="simple">
+<li><p>Pelayanan menjadi lebih cepat</p></li>
+<li><p>Pelanggan lebih puas</p></li>
+<li><p>Respon terhadap keluhan lebih efektif</p></li>
+<li><p>Loyalitas pelanggan meningkat</p></li>
+<li><p>Pengalaman pengguna menjadi lebih baik</p></li>
+</ul>
+<p>Dengan memanfaatkan Data Science, perusahaan dapat menciptakan layanan yang lebih cerdas, efisien, dan sesuai dengan kebutuhan pelanggan.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-scientist">
+<h1>Data Scientist<a class="headerlink" href="#data-scientist" title="Permalink to this heading">#</a></h1>
+<p>Data Scientist adalah seseorang yang memiliki kemampuan untuk mengolah data menjadi informasi yang berguna menggunakan berbagai metode seperti statistik, machine learning, data mining, dan pemrograman. Seorang Data Scientist bertugas menganalisis data dalam jumlah besar untuk menemukan pola, hubungan, dan informasi tersembunyi yang dapat membantu pengambilan keputusan.</p>
+<p>Profesi Data Scientist menjadi sangat penting pada era digital karena hampir seluruh aktivitas menghasilkan data. Perusahaan membutuhkan tenaga ahli yang mampu mengubah data mentah menjadi insight yang bernilai bagi bisnis.</p>
+<p>Data Scientist tidak hanya bekerja dengan angka dan data, tetapi juga harus memahami masalah bisnis agar solusi yang dibuat sesuai dengan kebutuhan perusahaan.</p>
+<p>Secara umum, seorang Data Scientist memiliki kemampuan:</p>
+<ul class="simple">
+<li><p>Mengolah data dalam jumlah besar</p></li>
+<li><p>Membersihkan dan mempersiapkan data</p></li>
+<li><p>Melakukan analisis statistik</p></li>
+<li><p>Membuat model machine learning</p></li>
+<li><p>Membuat visualisasi data</p></li>
+<li><p>Menyampaikan hasil analisis kepada pihak manajemen</p></li>
+</ul>
+<p>Profesi ini banyak digunakan pada bidang:</p>
+<ul class="simple">
+<li><p>Perbankan</p></li>
+<li><p>Kesehatan</p></li>
+<li><p>E-commerce</p></li>
+<li><p>Transportasi</p></li>
+<li><p>Media sosial</p></li>
+<li><p>Pendidikan</p></li>
+<li><p>Industri teknologi</p></li>
+</ul>
+<p>Contoh penerapan:</p>
+<ul class="simple">
+<li><p>Prediksi risiko kredit pada bank</p></li>
+<li><p>Sistem rekomendasi produk pada marketplace</p></li>
+<li><p>Prediksi penyakit pada bidang kesehatan</p></li>
+<li><p>Analisis perilaku pelanggan</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="tugas-data-scientist">
+<h1>Tugas Data Scientist<a class="headerlink" href="#tugas-data-scientist" title="Permalink to this heading">#</a></h1>
+<section id="mengumpulkan-data">
+<h2>1. Mengumpulkan Data<a class="headerlink" href="#mengumpulkan-data" title="Permalink to this heading">#</a></h2>
+<p>Tahap pertama dalam pekerjaan Data Scientist adalah mengumpulkan data dari berbagai sumber. Data dapat berasal dari:</p>
+<ul class="simple">
+<li><p>Database perusahaan</p></li>
+<li><p>Website</p></li>
+<li><p>API</p></li>
+<li><p>Sensor</p></li>
+<li><p>Media sosial</p></li>
+<li><p>File Excel atau CSV</p></li>
+</ul>
+<p>Data yang dikumpulkan dapat berbentuk:</p>
+<ul class="simple">
+<li><p>Data numerik</p></li>
+<li><p>Data teks</p></li>
+<li><p>Data gambar</p></li>
+<li><p>Data audio</p></li>
+<li><p>Data transaksi</p></li>
+</ul>
+<p>Tujuan pengumpulan data adalah mendapatkan informasi yang cukup untuk dianalisis lebih lanjut.</p>
+</section>
+<hr class="docutils" />
+<section id="membersihkan-data">
+<h2>2. Membersihkan Data<a class="headerlink" href="#membersihkan-data" title="Permalink to this heading">#</a></h2>
+<p>Data pada dunia nyata sering kali tidak bersih dan memiliki banyak masalah, seperti:</p>
+<ul class="simple">
+<li><p>Missing value</p></li>
+<li><p>Data duplikat</p></li>
+<li><p>Data tidak konsisten</p></li>
+<li><p>Outlier</p></li>
+<li><p>Kesalahan input</p></li>
+</ul>
+<p>Oleh karena itu, Data Scientist harus melakukan data cleaning atau pembersihan data sebelum data digunakan.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Menghapus data duplikat</p></li>
+<li><p>Mengisi missing value</p></li>
+<li><p>Memperbaiki format data</p></li>
+<li><p>Menghapus noise pada data</p></li>
+</ul>
+<p>Tahap ini sangat penting karena kualitas model sangat bergantung pada kualitas data.</p>
+</section>
+<hr class="docutils" />
+<section id="melakukan-analisis-data">
+<h2>3. Melakukan Analisis Data<a class="headerlink" href="#melakukan-analisis-data" title="Permalink to this heading">#</a></h2>
+<p>Setelah data bersih, Data Scientist melakukan analisis untuk memahami karakteristik data.</p>
+<p>Analisis dilakukan menggunakan:</p>
+<ul class="simple">
+<li><p>Statistik deskriptif</p></li>
+<li><p>Visualisasi data</p></li>
+<li><p>Korelasi antar variabel</p></li>
+<li><p>Distribusi data</p></li>
+</ul>
+<p>Tujuan analisis:</p>
+<ul class="simple">
+<li><p>Menemukan pola</p></li>
+<li><p>Memahami hubungan antar data</p></li>
+<li><p>Mengetahui karakteristik data</p></li>
+</ul>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Mengetahui rata-rata penjualan</p></li>
+<li><p>Mengetahui produk paling laris</p></li>
+<li><p>Mengetahui perilaku pelanggan</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="menemukan-pola-pada-data">
+<h2>4. Menemukan Pola pada Data<a class="headerlink" href="#menemukan-pola-pada-data" title="Permalink to this heading">#</a></h2>
+<p>Data Scientist bertugas menemukan pola tersembunyi yang tidak terlihat secara langsung.</p>
+<p>Contoh pola:</p>
+<ul class="simple">
+<li><p>Pelanggan tertentu sering membeli produk tertentu</p></li>
+<li><p>Penjualan meningkat pada waktu tertentu</p></li>
+<li><p>Transaksi mencurigakan pada sistem perbankan</p></li>
+</ul>
+<p>Teknik yang digunakan:</p>
+<ul class="simple">
+<li><p>Clustering</p></li>
+<li><p>Classification</p></li>
+<li><p>Association Rule</p></li>
+<li><p>Forecasting</p></li>
+</ul>
+<p>Hasil pola ini dapat digunakan untuk membantu pengambilan keputusan bisnis.</p>
+</section>
+<hr class="docutils" />
+<section id="membuat-model-machine-learning">
+<h2>5. Membuat Model Machine Learning<a class="headerlink" href="#membuat-model-machine-learning" title="Permalink to this heading">#</a></h2>
+<p>Machine Learning digunakan untuk membuat sistem yang dapat belajar dari data secara otomatis.</p>
+<p>Data Scientist membuat model machine learning untuk:</p>
+<ul class="simple">
+<li><p>Prediksi</p></li>
+<li><p>Klasifikasi</p></li>
+<li><p>Deteksi anomali</p></li>
+<li><p>Segmentasi data</p></li>
+</ul>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Prediksi harga rumah</p></li>
+<li><p>Prediksi cuaca</p></li>
+<li><p>Deteksi spam email</p></li>
+<li><p>Prediksi pelanggan churn</p></li>
+</ul>
+<p>Model dibuat menggunakan algoritma seperti:</p>
+<ul class="simple">
+<li><p>Decision Tree</p></li>
+<li><p>Random Forest</p></li>
+<li><p>Logistic Regression</p></li>
+<li><p>KNN</p></li>
+<li><p>SVM</p></li>
+<li><p>Neural Network</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="membuat-visualisasi-data">
+<h2>6. Membuat Visualisasi Data<a class="headerlink" href="#membuat-visualisasi-data" title="Permalink to this heading">#</a></h2>
+<p>Visualisasi data digunakan untuk menampilkan informasi dalam bentuk grafik atau diagram agar lebih mudah dipahami.</p>
+<p>Contoh visualisasi:</p>
+<ul class="simple">
+<li><p>Bar chart</p></li>
+<li><p>Pie chart</p></li>
+<li><p>Histogram</p></li>
+<li><p>Scatter plot</p></li>
+<li><p>Heatmap</p></li>
+</ul>
+<p>Tujuan visualisasi:</p>
+<ul class="simple">
+<li><p>Mempermudah pemahaman data</p></li>
+<li><p>Menemukan pola data</p></li>
+<li><p>Menyampaikan hasil analisis kepada manajemen</p></li>
+</ul>
+<p>Visualisasi sangat penting karena hasil analisis akan lebih mudah dipahami dibandingkan hanya melihat angka.</p>
+</section>
+<hr class="docutils" />
+<section id="memberikan-rekomendasi-bisnis">
+<h2>7. Memberikan Rekomendasi Bisnis<a class="headerlink" href="#memberikan-rekomendasi-bisnis" title="Permalink to this heading">#</a></h2>
+<p>Hasil akhir pekerjaan Data Scientist adalah memberikan insight dan rekomendasi kepada perusahaan.</p>
+<p>Contoh rekomendasi:</p>
+<ul class="simple">
+<li><p>Produk yang perlu dipromosikan</p></li>
+<li><p>Strategi pemasaran yang efektif</p></li>
+<li><p>Prediksi risiko bisnis</p></li>
+<li><p>Segmentasi pelanggan</p></li>
+</ul>
+<p>Dengan rekomendasi tersebut, perusahaan dapat mengambil keputusan yang lebih baik dan berbasis data.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="skill-yang-dibutuhkan-data-scientist">
+<h1>Skill yang Dibutuhkan Data Scientist<a class="headerlink" href="#skill-yang-dibutuhkan-data-scientist" title="Permalink to this heading">#</a></h1>
+<p>Untuk menjadi seorang Data Scientist diperlukan berbagai kemampuan teknis maupun non-teknis.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="machine-learning">
+<h1>1. Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this heading">#</a></h1>
+<p>Machine Learning adalah cabang kecerdasan buatan yang memungkinkan komputer belajar dari data tanpa diprogram secara langsung.</p>
+<p>Machine Learning digunakan untuk membuat model yang dapat:</p>
+<ul class="simple">
+<li><p>Mengenali pola</p></li>
+<li><p>Membuat prediksi</p></li>
+<li><p>Mengambil keputusan otomatis</p></li>
+</ul>
+<p>Jenis Machine Learning:</p>
+<ul class="simple">
+<li><p>Supervised Learning</p></li>
+<li><p>Unsupervised Learning</p></li>
+<li><p>Reinforcement Learning</p></li>
+</ul>
+<p>Contoh penerapan:</p>
+<ul class="simple">
+<li><p>Prediksi harga rumah</p></li>
+<li><p>Deteksi spam email</p></li>
+<li><p>Prediksi penjualan</p></li>
+<li><p>Sistem rekomendasi film</p></li>
+<li><p>Deteksi fraud transaksi</p></li>
+</ul>
+<p>Algoritma Machine Learning yang umum digunakan:</p>
+<ul class="simple">
+<li><p>Linear Regression</p></li>
+<li><p>Decision Tree</p></li>
+<li><p>Random Forest</p></li>
+<li><p>K-Means</p></li>
+<li><p>Logistic Regression</p></li>
+<li><p>Neural Network</p></li>
+</ul>
+<p>Kemampuan machine learning sangat penting karena menjadi inti dalam proses analisis data modern.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="statistik">
+<h1>2. Statistik<a class="headerlink" href="#statistik" title="Permalink to this heading">#</a></h1>
+<p>Statistik digunakan untuk memahami data secara matematis dan membantu proses pengambilan keputusan berdasarkan data.</p>
+<p>Statistik membantu Data Scientist untuk:</p>
+<ul class="simple">
+<li><p>Menghitung rata-rata data</p></li>
+<li><p>Mengetahui distribusi data</p></li>
+<li><p>Mengukur hubungan antar variabel</p></li>
+<li><p>Menguji hipotesis</p></li>
+</ul>
+<p>Contoh konsep statistik:</p>
+<ul class="simple">
+<li><p>Mean</p></li>
+<li><p>Median</p></li>
+<li><p>Modus</p></li>
+<li><p>Variance</p></li>
+<li><p>Standar deviasi</p></li>
+<li><p>Korelasi</p></li>
+<li><p>Probabilitas</p></li>
+</ul>
+<p>Statistik juga digunakan untuk:</p>
+<ul class="simple">
+<li><p>Evaluasi model machine learning</p></li>
+<li><p>Menentukan kualitas data</p></li>
+<li><p>Membuat inferensi data</p></li>
+</ul>
+<p>Tanpa statistik, proses analisis data akan sulit dilakukan secara ilmiah.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="programming">
+<h1>3. Programming<a class="headerlink" href="#programming" title="Permalink to this heading">#</a></h1>
+<p>Kemampuan pemrograman sangat penting karena sebagian besar proses Data Science dilakukan menggunakan kode program.</p>
+<p>Bahasa pemrograman yang sering digunakan:</p>
+<ul class="simple">
+<li><p>Python</p></li>
+<li><p>R</p></li>
+</ul>
+<p>Python menjadi bahasa paling populer karena:</p>
+<ul class="simple">
+<li><p>Mudah dipelajari</p></li>
+<li><p>Banyak library Data Science</p></li>
+<li><p>Komunitas besar</p></li>
+</ul>
+<p>Library Python yang umum digunakan:</p>
+<section id="pandas">
+<h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this heading">#</a></h2>
+<p>Digunakan untuk:</p>
+<ul class="simple">
+<li><p>Mengolah data tabel</p></li>
+<li><p>Membaca file CSV atau Excel</p></li>
+<li><p>Membersihkan data</p></li>
+</ul>
+</section>
+<section id="numpy">
+<h2>NumPy<a class="headerlink" href="#numpy" title="Permalink to this heading">#</a></h2>
+<p>Digunakan untuk:</p>
+<ul class="simple">
+<li><p>Operasi numerik</p></li>
+<li><p>Perhitungan array dan matriks</p></li>
+</ul>
+</section>
+<section id="scikit-learn">
+<h2>Scikit-Learn<a class="headerlink" href="#scikit-learn" title="Permalink to this heading">#</a></h2>
+<p>Digunakan untuk:</p>
+<ul class="simple">
+<li><p>Machine learning</p></li>
+<li><p>Training model</p></li>
+<li><p>Evaluasi model</p></li>
+</ul>
+</section>
+<section id="matplotlib">
+<h2>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this heading">#</a></h2>
+<p>Digunakan untuk:</p>
+<ul class="simple">
+<li><p>Visualisasi data</p></li>
+<li><p>Membuat grafik</p></li>
+</ul>
+<p>Selain itu terdapat library lain seperti:</p>
+<ul class="simple">
+<li><p>Seaborn</p></li>
+<li><p>TensorFlow</p></li>
+<li><p>Keras</p></li>
+<li><p>PyTorch</p></li>
+</ul>
+<p>Kemampuan programming membantu Data Scientist mengotomatisasi proses analisis data.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="database">
+<h1>4. Database<a class="headerlink" href="#database" title="Permalink to this heading">#</a></h1>
+<p>Database digunakan untuk menyimpan dan mengelola data dalam jumlah besar.</p>
+<p>Data Scientist harus mampu:</p>
+<ul class="simple">
+<li><p>Mengambil data dari database</p></li>
+<li><p>Mengolah data</p></li>
+<li><p>Menulis query SQL</p></li>
+</ul>
+<p>Contoh database:</p>
+<ul class="simple">
+<li><p>MySQL</p></li>
+<li><p>PostgreSQL</p></li>
+<li><p>MongoDB</p></li>
+<li><p>Oracle</p></li>
+</ul>
+<p>Bahasa yang umum digunakan:</p>
+<ul class="simple">
+<li><p>SQL (Structured Query Language)</p></li>
+</ul>
+<p>Contoh query SQL:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pelanggan</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metodologi-crisp-dm">
+<h1>Metodologi CRISP-DM<a class="headerlink" href="#metodologi-crisp-dm" title="Permalink to this heading">#</a></h1>
+<p>CRISP-DM (<em>Cross Industry Standard Process for Data Mining</em>) adalah metodologi standar yang digunakan dalam pengerjaan proyek Data Science dan Data Mining. Metode ini membantu proses analisis data menjadi lebih terstruktur, sistematis, dan mudah dipahami.</p>
+<p>CRISP-DM terdiri dari beberapa tahapan utama yang saling berhubungan. Setiap tahap memiliki tujuan tertentu agar proyek Data Science dapat berjalan dengan baik dan menghasilkan solusi yang sesuai dengan kebutuhan bisnis.</p>
+<p>Tahapan dalam CRISP-DM:</p>
+<ol class="arabic simple">
+<li><p>Business Understanding</p></li>
+<li><p>Data Understanding</p></li>
+<li><p>Data Preprocessing</p></li>
+<li><p>Modelling</p></li>
+<li><p>Evaluation</p></li>
+<li><p>Deployment</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="business-understanding">
+<h1>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Permalink to this heading">#</a></h1>
+<p>Tahap pertama dalam CRISP-DM adalah memahami permasalahan bisnis yang ingin diselesaikan. Pada tahap ini, fokus utama bukan pada data, tetapi memahami tujuan bisnis dan kebutuhan perusahaan.</p>
+<p>Tujuan tahap ini:</p>
+<ul class="simple">
+<li><p>Menentukan masalah yang ingin diselesaikan</p></li>
+<li><p>Menentukan tujuan proyek</p></li>
+<li><p>Menentukan kebutuhan analisis</p></li>
+<li><p>Membuat rencana pengerjaan proyek</p></li>
+</ul>
+<p>Kegiatan yang dilakukan:</p>
+<ul class="simple">
+<li><p>Diskusi dengan pihak bisnis atau perusahaan</p></li>
+<li><p>Menentukan target yang ingin dicapai</p></li>
+<li><p>Menentukan indikator keberhasilan proyek</p></li>
+<li><p>Menentukan sumber daya dan jadwal proyek</p></li>
+</ul>
+<p>Contoh kasus:
+Sebuah bank ingin memprediksi apakah nasabah akan gagal membayar kredit (<em>credit risk modelling</em>). Dengan analisis data, bank dapat menentukan:</p>
+<ul class="simple">
+<li><p>Nasabah yang layak menerima pinjaman</p></li>
+<li><p>Besar pinjaman yang diberikan</p></li>
+<li><p>Risiko keterlambatan pembayaran</p></li>
+</ul>
+<p>Tahap ini sangat penting karena kesalahan memahami masalah bisnis dapat menyebabkan model yang dibuat tidak sesuai kebutuhan perusahaan.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
+<h1>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Permalink to this heading">#</a></h1>
+<p>Tahap ini bertujuan memahami data yang akan digunakan dalam proses analisis. Data yang digunakan harus dipahami karakteristiknya sebelum dilakukan pemodelan.</p>
+<p>Tujuan:</p>
+<ul class="simple">
+<li><p>Memahami struktur data</p></li>
+<li><p>Memahami isi data</p></li>
+<li><p>Mengetahui kualitas data</p></li>
+<li><p>Menemukan masalah pada data</p></li>
+</ul>
+<p>Kegiatan yang dilakukan:</p>
+<ul class="simple">
+<li><p>Mengumpulkan data awal</p></li>
+<li><p>Melihat struktur data</p></li>
+<li><p>Mengetahui tipe atribut</p></li>
+<li><p>Menemukan missing value</p></li>
+<li><p>Menemukan outlier</p></li>
+<li><p>Melakukan eksplorasi data</p></li>
+<li><p>Melakukan statistik deskriptif</p></li>
+</ul>
+<p>Pada tahap ini biasanya dilakukan:</p>
+<ul class="simple">
+<li><p>Visualisasi data</p></li>
+<li><p>Analisis distribusi data</p></li>
+<li><p>Pemeriksaan kualitas data</p></li>
+<li><p>Pemeriksaan hubungan antar atribut</p></li>
+</ul>
+<p>Contoh:
+Dataset pelanggan bank memiliki atribut:</p>
+<ul class="simple">
+<li><p>Pendapatan</p></li>
+<li><p>Jumlah tanggungan</p></li>
+<li><p>Durasi pinjaman</p></li>
+<li><p>Status KPR</p></li>
+<li><p>Rata-rata keterlambatan pembayaran</p></li>
+</ul>
+<p>Data tersebut perlu dipahami sebelum digunakan untuk machine learning.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="jenis-atribut-data">
+<h1>Jenis Atribut Data<a class="headerlink" href="#jenis-atribut-data" title="Permalink to this heading">#</a></h1>
+<p>Dalam Data Science, atribut atau fitur merupakan karakteristik yang dimiliki oleh data. Setiap atribut memiliki tipe yang berbeda sehingga penanganannya juga berbeda.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="categorical-attribute">
+<h1>1. Categorical Attribute<a class="headerlink" href="#categorical-attribute" title="Permalink to this heading">#</a></h1>
+<p>Atribut kategorikal adalah atribut yang nilainya berupa kategori atau label tertentu.</p>
+<p>Ciri-ciri:</p>
+<ul class="simple">
+<li><p>Berupa label atau nama</p></li>
+<li><p>Tidak memiliki urutan</p></li>
+<li><p>Tidak dapat dihitung secara matematis</p></li>
+</ul>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Jenis kelamin</p></li>
+<li><p>Kota</p></li>
+<li><p>Warna</p></li>
+<li><p>Status pernikahan</p></li>
+</ul>
+<p>Contoh data:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nama</p></th>
+<th class="head"><p>Jenis Kelamin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Andi</p></td>
+<td><p>Laki-laki</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sinta</p></td>
+<td><p>Perempuan</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pada data kategorikal, nilai hanya menunjukkan kategori dan tidak memiliki arti numerik.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="ordinal-attribute">
+<h1>2. Ordinal Attribute<a class="headerlink" href="#ordinal-attribute" title="Permalink to this heading">#</a></h1>
+<p>Atribut ordinal adalah atribut kategorikal yang memiliki tingkatan atau urutan tertentu.</p>
+<p>Ciri-ciri:</p>
+<ul class="simple">
+<li><p>Memiliki urutan</p></li>
+<li><p>Tidak memiliki jarak yang pasti antar kategori</p></li>
+</ul>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Rendah</p></li>
+<li><p>Sedang</p></li>
+<li><p>Tinggi</p></li>
+</ul>
+<p>Contoh lain:</p>
+<ul class="simple">
+<li><p>Tingkat pendidikan:</p>
+<ul>
+<li><p>SMA</p></li>
+<li><p>S1</p></li>
+<li><p>S2</p></li>
+<li><p>S3</p></li>
+</ul>
+</li>
+</ul>
+<p>Walaupun memiliki urutan, selisih antar kategori tidak dapat diukur secara pasti.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="numeric-attribute">
+<h1>3. Numeric Attribute<a class="headerlink" href="#numeric-attribute" title="Permalink to this heading">#</a></h1>
+<p>Atribut numerik adalah atribut yang nilainya berupa angka dan dapat dilakukan operasi matematika.</p>
+<p>Atribut numerik dibagi menjadi dua jenis:</p>
+<section id="a-numeric-diskrit">
+<h2>a. Numeric Diskrit<a class="headerlink" href="#a-numeric-diskrit" title="Permalink to this heading">#</a></h2>
+<p>Data numerik diskrit berupa bilangan bulat dan biasanya digunakan untuk menghitung jumlah.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Jumlah anak</p></li>
+<li><p>Jumlah kendaraan</p></li>
+<li><p>Jumlah transaksi</p></li>
+</ul>
+<p>Contoh data:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nama</p></th>
+<th class="head"><p>Jumlah Anak</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Andi</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Budi</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="b-numeric-kontinu">
+<h2>b. Numeric Kontinu<a class="headerlink" href="#b-numeric-kontinu" title="Permalink to this heading">#</a></h2>
+<p>Data numerik kontinu berupa angka pecahan atau bilangan real.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Tinggi badan</p></li>
+<li><p>Berat badan</p></li>
+<li><p>Jarak</p></li>
+<li><p>Suhu</p></li>
+</ul>
+<p>Contoh data:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nama</p></th>
+<th class="head"><p>Tinggi Badan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Andi</p></td>
+<td><p>170.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sinta</p></td>
+<td><p>158.2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Data kontinu biasanya memiliki nilai dalam rentang tertentu.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="data-quality">
+<h1>Data Quality<a class="headerlink" href="#data-quality" title="Permalink to this heading">#</a></h1>
+<p>Kualitas data sangat penting dalam proses Data Science karena kualitas model sangat bergantung pada kualitas data yang digunakan.</p>
+<p>Konsep penting:</p>
+<blockquote>
+<div><p>Garbage In, Garbage Out</p>
+</div></blockquote>
+<p>Artinya:
+Jika data yang digunakan buruk, maka hasil analisis dan model yang dihasilkan juga akan buruk.</p>
+<p>Dimensi kualitas data:</p>
+<section id="akurasi">
+<h2>1. Akurasi<a class="headerlink" href="#akurasi" title="Permalink to this heading">#</a></h2>
+<p>Data harus sesuai dengan kondisi sebenarnya.</p>
+<p>Contoh:
+Jika umur seseorang 20 tahun tetapi tercatat 200 tahun, maka data tersebut tidak akurat.</p>
+</section>
+<hr class="docutils" />
+<section id="kelengkapan">
+<h2>2. Kelengkapan<a class="headerlink" href="#kelengkapan" title="Permalink to this heading">#</a></h2>
+<p>Data tidak boleh banyak yang kosong (<em>missing value</em>).</p>
+<p>Contoh:
+Kolom penghasilan banyak yang kosong sehingga analisis menjadi sulit.</p>
+</section>
+<hr class="docutils" />
+<section id="konsistensi">
+<h2>3. Konsistensi<a class="headerlink" href="#konsistensi" title="Permalink to this heading">#</a></h2>
+<p>Format data harus seragam.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>“L”</p></li>
+<li><p>“Laki-laki”</p></li>
+<li><p>“Pria”</p></li>
+</ul>
+<p>Ketiga nilai tersebut memiliki arti sama tetapi formatnya berbeda.</p>
+</section>
+<hr class="docutils" />
+<section id="ketepatan-waktu">
+<h2>4. Ketepatan Waktu<a class="headerlink" href="#ketepatan-waktu" title="Permalink to this heading">#</a></h2>
+<p>Data harus relevan dengan kondisi terbaru.</p>
+<p>Contoh:
+Data perilaku pelanggan tahun 2018 mungkin tidak relevan untuk kondisi saat ini.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="missing-value">
+<h1>Missing Value<a class="headerlink" href="#missing-value" title="Permalink to this heading">#</a></h1>
+<p>Missing value adalah kondisi ketika data memiliki nilai kosong atau tidak terisi.</p>
+<p>Penyebab missing value:</p>
+<ul class="simple">
+<li><p>Kesalahan input data</p></li>
+<li><p>Sensor rusak</p></li>
+<li><p>Data tidak diisi</p></li>
+<li><p>Data hilang saat proses penyimpanan</p></li>
+</ul>
+<p>Contoh data:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nama</p></th>
+<th class="head"><p>Umur</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Andi</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>Budi</p></td>
+<td><p>NaN</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai <code class="docutils literal notranslate"><span class="pre">NaN</span></code> menunjukkan data kosong atau missing value.</p>
+<p>Missing value dapat menyebabkan:</p>
+<ul class="simple">
+<li><p>Analisis menjadi tidak akurat</p></li>
+<li><p>Model machine learning gagal bekerja</p></li>
+<li><p>Hasil prediksi menjadi buruk</p></li>
+</ul>
+<p>Oleh karena itu missing value harus ditangani sebelum proses modelling.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="cara-mengatasi-missing-value">
+<h1>Cara Mengatasi Missing Value<a class="headerlink" href="#cara-mengatasi-missing-value" title="Permalink to this heading">#</a></h1>
+<p>Terdapat beberapa cara untuk menangani missing value.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="menghapus-data">
+<h1>1. Menghapus Data<a class="headerlink" href="#menghapus-data" title="Permalink to this heading">#</a></h1>
+<p>Data yang memiliki missing value dapat dihapus.</p>
+<p>Bisa berupa:</p>
+<ul class="simple">
+<li><p>Menghapus baris</p></li>
+<li><p>Menghapus kolom</p></li>
+</ul>
+<p>Kelebihan:</p>
+<ul class="simple">
+<li><p>Mudah dilakukan</p></li>
+<li><p>Data menjadi bersih</p></li>
+</ul>
+<p>Kelemahan:</p>
+<ul class="simple">
+<li><p>Mengurangi jumlah data</p></li>
+<li><p>Bisa menghilangkan informasi penting</p></li>
+</ul>
+<p>Metode ini cocok jika jumlah missing value sedikit.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="imputasi-missing-value">
+<h1>2. Imputasi Missing Value<a class="headerlink" href="#imputasi-missing-value" title="Permalink to this heading">#</a></h1>
+<p>Imputasi adalah proses mengisi nilai kosong menggunakan nilai tertentu.</p>
+<p>Metode imputasi yang umum:</p>
+<section id="a-mean">
+<h2>a. Mean<a class="headerlink" href="#a-mean" title="Permalink to this heading">#</a></h2>
+<p>Mengisi missing value menggunakan rata-rata data.</p>
+<p>Cocok untuk:</p>
+<ul class="simple">
+<li><p>Data numerik</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="b-median">
+<h2>b. Median<a class="headerlink" href="#b-median" title="Permalink to this heading">#</a></h2>
+<p>Mengisi missing value menggunakan nilai tengah data.</p>
+<p>Cocok jika:</p>
+<ul class="simple">
+<li><p>Data memiliki outlier</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="c-modus">
+<h2>c. Modus<a class="headerlink" href="#c-modus" title="Permalink to this heading">#</a></h2>
+<p>Mengisi missing value menggunakan nilai yang paling sering muncul.</p>
+<p>Cocok untuk:</p>
+<ul class="simple">
+<li><p>Data kategorikal</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="contoh-imputasi-mean-menggunakan-python">
+<h1>Contoh Imputasi Mean Menggunakan Python<a class="headerlink" href="#contoh-imputasi-mean-menggunakan-python" title="Permalink to this heading">#</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Membuat dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Nilai&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data Sebelum Imputasi&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Mengisi missing value dengan mean</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Nilai&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Nilai&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Nilai&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data Setelah Imputasi&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Missing%20Value%20Imputation%20dan%20Normalisasi%20Data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pertemuan 5 | Missing Value &amp; Normalisasi Data Titanic</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="UTS_PENDAT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>UTS PENAMBANGAN DATA</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pertemuan 7 | Reduksi Dinamis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dan-implementasi-data-science">Konsep dan Implementasi Data Science</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat-data-science">Manfaat Data Science</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membantu-pengambilan-keputusan-bisnis">1. Membantu Pengambilan Keputusan Bisnis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memahami-pelanggan-dan-pasar">2. Memahami Pelanggan dan Pasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meningkatkan-kualitas-layanan">3. Meningkatkan Kualitas Layanan</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-scientist">Data Scientist</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-data-scientist">Tugas Data Scientist</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengumpulkan-data">1. Mengumpulkan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membersihkan-data">2. Membersihkan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-analisis-data">3. Melakukan Analisis Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menemukan-pola-pada-data">4. Menemukan Pola pada Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-model-machine-learning">5. Membuat Model Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-visualisasi-data">6. Membuat Visualisasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memberikan-rekomendasi-bisnis">7. Memberikan Rekomendasi Bisnis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#skill-yang-dibutuhkan-data-scientist">Skill yang Dibutuhkan Data Scientist</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning">1. Machine Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik">2. Statistik</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#programming">3. Programming</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">NumPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">Scikit-Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#database">4. Database</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm">Metodologi CRISP-DM</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-atribut-data">Jenis Atribut Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-attribute">1. Categorical Attribute</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinal-attribute">2. Ordinal Attribute</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#numeric-attribute">3. Numeric Attribute</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-numeric-diskrit">a. Numeric Diskrit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-numeric-kontinu">b. Numeric Kontinu</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-quality">Data Quality</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi">1. Akurasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelengkapan">2. Kelengkapan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsistensi">3. Konsistensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ketepatan-waktu">4. Ketepatan Waktu</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">Missing Value</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-mengatasi-missing-value">Cara Mengatasi Missing Value</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menghapus-data">1. Menghapus Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-missing-value">2. Imputasi Missing Value</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-mean">a. Mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-median">b. Median</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-modus">c. Modus</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-imputasi-mean-menggunakan-python">Contoh Imputasi Mean Menggunakan Python</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dhafin Rizqika Akhmad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
