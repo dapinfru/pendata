@@ -26,3 +26,6 @@ chapters:
     
   - file: "Decision_Tree"
     title: "Pertemuan 11 |Decision_Tree"
+
+  - file: "Analisis_Data_Random_Forest"
+    title: "Pertemuan 12 |Random Forest"
