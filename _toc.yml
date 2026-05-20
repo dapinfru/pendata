@@ -29,3 +29,6 @@ chapters:
 
   - file: "Analisis_Data_Random_Forest"
     title: "Pertemuan 12 |Random Forest"
+
+  - file: "Regresi_Linear"
+    title: "Pertemuan 13 |Regresi Linear"
