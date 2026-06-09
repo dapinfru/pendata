@@ -1,0 +1,1937 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression &#8212; Pendata</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/vendor/fontawesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/copybutton_funcs.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/underscore-1.13.1.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/jquery-3.6.0.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/documentation_options.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/scripts/bootstrap.js"></script>
+    <script src="_static/scripts/pydata-sphinx-theme.js"></script>
+    <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Peramalan_Kadar_NO₂_di_Kecamatan_Sukolilo,_Kota_Surabaya_Menggunakan_KNN_Regression (1)';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Pertemuan 13 | Regresi Linier" href="Regresi_Linear.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Profil.jpeg" class="logo__image only-light" alt="Pendata - Home"/>
+    <script>document.write(`<img src="_static/Profil.jpeg" class="logo__image only-dark" alt="Pendata - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Biodata
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Penambangan%20Data.html">Apa Itu Penambangan Data</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bisnis_UnderStanding.html">Pertemuan 2 | Bisnis UnderStanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html">Pertemuan 2 | Data UnderStanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Pertemuan 2 | Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Missing%20Value%20Imputation%20dan%20Normalisasi%20Data.html">Pertemuan 5 | Missing Value &amp; Normalisasi Data Titanic</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Reduksi_Dinamis.html">Pertemuan 7 | Reduksi Dinamis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="UTS_PENDAT.html"><strong>UTS PENAMBANGAN DATA</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Analisis_Data_Naive_Bayes.html">Pertemuan 10 | Analisis Menggunakan Naive Bayes</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Decision_Tree.html">Pertemuan 11 | Decision Tree</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Analisis_Data_Random_Forest.html">Pertemuan 12 |  Analisa Data Menggunakan Random Forest di KNIME</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Regresi_Linear.html">Pertemuan 13 | Regresi Linier</a></li>
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/dapinfru/pendata/main/v2/gh/dapinfru/pendata/main?urlpath=tree/Peramalan_Kadar_NO₂_di_Kecamatan_Sukolilo,_Kota_Surabaya_Menggunakan_KNN_Regression (1).ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/dapinfru/pendata/blob/main/github/dapinfru/pendata/blob/main/Peramalan_Kadar_NO₂_di_Kecamatan_Sukolilo,_Kota_Surabaya_Menggunakan_KNN_Regression (1).ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/dapinfru/pendata" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Peramalan_Kadar_NO₂_di_Kecamatan_Sukolilo,_Kota_Surabaya_Menggunakan_KNN_Regression (1).ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penelitian">2. Tujuan Penelitian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dan-sumber-data">3. Data dan Sumber Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-studi">4. Wilayah Studi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi">5. Metodologi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">6. Pengumpulan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalasi-library">6.1 Instalasi Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">6.2 Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-copernicus-data-space-ecosystem">6.3 Koneksi ke Copernicus Data Space Ecosystem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-area-penelitian">6.4 Menentukan Area Penelitian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-dataset-no2-dari-sentinel-5p">6.5 Mengambil Dataset NO₂ dari Sentinel-5P</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-data-harian">6.6 Agregasi Data Harian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-proses-pengambilan-data">6.7 Menjalankan Proses Pengambilan Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">7. PreProcessing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-file-netcdf">7.1 Membaca File NetCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-variabel-no2-dan-waktu">7.2 Mengambil Variabel NO₂ dan Waktu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melihat-struktur-data">7.3 Melihat Struktur Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-contoh-data">7.4 Menampilkan Contoh Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengatasi-missing-value-menggunakan-interpolasi-linear">7.5 Mengatasi Missing Value Menggunakan Interpolasi Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengubah-menjadi-data-time-series-harian">7.6 Mengubah Menjadi Data Time Series Harian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataframe">7.7 Membentuk DataFrame</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-ke-csv">7.8 Menyimpan Data ke CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-missing-date">7.9 Pemeriksaan Missing Date</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolasi-missing-date">7.10 Interpolasi Missing Date</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-dataset-final">7.11 Menyimpan Dataset Final</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-menggunakan-knn-regression">4. Modeling Menggunakan KNN Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">4.1 Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil">Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi-transformasi-time-series">4.2 Membuat Fungsi Transformasi Time Series</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-4-hari">4.3 Membentuk Dataset Lag 4 Hari</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-10-hari">4.4 Membentuk Dataset Lag 10 Hari</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membangun-fungsi-training-knn-regression">4.5 Membangun Fungsi Training KNN Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-knn-menggunakan-4-hari-sebelumnya">4.6 Training Model KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya">4.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-kode">Fungsi Kode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-visualisasi">Tujuan Visualisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-grafik">Penjelasan Grafik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">Analisis Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya">4.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Fungsi Kode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Tujuan Visualisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Penjelasan Grafik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analisis Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-konsentrasi-no2-harian">4.9 Visualisasi Time Series Konsentrasi NO₂ Harian</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Fungsi Kode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Tujuan Visualisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Penjelasan Grafik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Analisis Hasil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final">FINAL</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-csv">Menyimpan data CSV</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="peramalan-kadar-no2-di-kecamatan-sukolilo-kota-surabaya-menggunakan-knn-regression">
+<h1>Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression<a class="headerlink" href="#peramalan-kadar-no2-di-kecamatan-sukolilo-kota-surabaya-menggunakan-knn-regression" title="Permalink to this heading">#</a></h1>
+<section id="pendahuluan">
+<h2>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Permalink to this heading">#</a></h2>
+<p>Pencemaran udara merupakan salah satu permasalahan lingkungan yang semakin mendapat perhatian, terutama di daerah perkotaan. Salah satu polutan yang sering digunakan sebagai indikator kualitas udara adalah Nitrogen Dioksida (NO₂). Gas ini umumnya berasal dari aktivitas kendaraan bermotor, industri, dan pembakaran bahan bakar fosil.</p>
+<p>Kecamatan Sukolilo merupakan salah satu wilayah di Kota Surabaya yang memiliki aktivitas perkotaan cukup tinggi. Oleh karena itu, pemantauan serta peramalan kadar NO₂ menjadi penting untuk membantu pengambilan keputusan dalam pengelolaan lingkungan.</p>
+<p>Pada penelitian ini digunakan metode K-Nearest Neighbor Regression (KNN Regression) untuk melakukan peramalan kadar NO₂ berdasarkan data historis yang diperoleh dari satelit Sentinel-5P melalui platform OpenEO.</p>
+</section>
+<hr class="docutils" />
+<section id="tujuan-penelitian">
+<h2>2. Tujuan Penelitian<a class="headerlink" href="#tujuan-penelitian" title="Permalink to this heading">#</a></h2>
+<p>Penelitian ini bertujuan untuk:</p>
+<ol class="arabic simple">
+<li><p>Mengambil data NO₂ dari satelit Sentinel-5P</p></li>
+<li><p>Menganalisis pola perubahan NO₂ harian</p></li>
+<li><p>Memprediksi kadar NO₂ menggunakan metode KNN Regression</p></li>
+<li><p>Mengevaluasi performa model prediksi</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="data-dan-sumber-data">
+<h2>3. Data dan Sumber Data<a class="headerlink" href="#data-dan-sumber-data" title="Permalink to this heading">#</a></h2>
+<p>Data yang digunakan dalam penelitian ini berasal dari:</p>
+<ul class="simple">
+<li><p>Sentinel-5P Level-2 (NO₂)</p></li>
+<li><p>Diakses melalui Copernicus Data Space Ecosystem (OpenEO)</p></li>
+<li><p>Format data: NetCDF (.nc)</p></li>
+<li><p>Variabel utama: Nitrogen Dioksida (NO₂)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="wilayah-studi">
+<h2>4. Wilayah Studi<a class="headerlink" href="#wilayah-studi" title="Permalink to this heading">#</a></h2>
+<p>Wilayah penelitian adalah Kecamatan Sukolilo, Kota Surabaya, Indonesia.</p>
+<p>Area penelitian difokuskan pada wilayah kecil (subset AOI) untuk mengurangi beban komputasi dan mempercepat proses pengolahan data satelit.</p>
+</section>
+<hr class="docutils" />
+<section id="metodologi">
+<h2>5. Metodologi<a class="headerlink" href="#metodologi" title="Permalink to this heading">#</a></h2>
+<p>Tahapan penelitian ini meliputi:</p>
+<ol class="arabic simple">
+<li><p>Pengambilan data menggunakan OpenEO</p></li>
+<li><p>Ekstraksi data NO₂ dari Sentinel-5P</p></li>
+<li><p>Preprocessing data time series</p></li>
+<li><p>Normalisasi data</p></li>
+<li><p>Transformasi menjadi supervised learning</p></li>
+<li><p>Penerapan model KNN Regression</p></li>
+<li><p>Evaluasi menggunakan RMSE dan R²</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="pengumpulan-data">
+<h2>6. Pengumpulan Data<a class="headerlink" href="#pengumpulan-data" title="Permalink to this heading">#</a></h2>
+<section id="instalasi-library">
+<h3>6.1 Instalasi Library<a class="headerlink" href="#instalasi-library" title="Permalink to this heading">#</a></h3>
+<p>Langkah pertama yang dilakukan adalah menginstal beberapa library Python yang akan digunakan selama proses penelitian. Library tersebut terdiri dari OpenEO untuk mengakses data Copernicus, NetCDF4 untuk membaca file hasil satelit, Pandas dan NumPy untuk pengolahan data, Matplotlib untuk visualisasi, serta Scikit-Learn untuk proses machine learning menggunakan algoritma KNN Regression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!pip install openeo netCDF4 pandas numpy matplotlib scikit-learn
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting openeo
+  Downloading openeo-0.50.0-py3-none-any.whl.metadata (8.9 kB)
+Collecting netCDF4
+  Downloading netcdf4-1.7.4-cp311-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (2.1 kB)
+Requirement already satisfied: pandas in /usr/local/lib/python3.12/dist-packages (2.2.2)
+Requirement already satisfied: numpy in /usr/local/lib/python3.12/dist-packages (2.0.2)
+Requirement already satisfied: matplotlib in /usr/local/lib/python3.12/dist-packages (3.10.0)
+Requirement already satisfied: scikit-learn in /usr/local/lib/python3.12/dist-packages (1.6.1)
+Requirement already satisfied: requests&gt;=2.26.0 in /usr/local/lib/python3.12/dist-packages (from openeo) (2.32.4)
+Requirement already satisfied: urllib3&gt;=1.9.0 in /usr/local/lib/python3.12/dist-packages (from openeo) (2.5.0)
+Requirement already satisfied: shapely&gt;=1.6.4 in /usr/local/lib/python3.12/dist-packages (from openeo) (2.1.2)
+Collecting xarray&lt;2025.01.2,&gt;=0.12.3 (from openeo)
+  Downloading xarray-2025.1.1-py3-none-any.whl.metadata (11 kB)
+Collecting pystac&gt;=1.5.0 (from openeo)
+  Downloading pystac-1.14.3-py3-none-any.whl.metadata (4.7 kB)
+Collecting deprecated&gt;=1.2.12 (from openeo)
+  Downloading deprecated-1.3.1-py2.py3-none-any.whl.metadata (5.9 kB)
+Requirement already satisfied: geopandas&gt;=0.14 in /usr/local/lib/python3.12/dist-packages (from openeo) (1.1.3)
+Collecting cftime (from netCDF4)
+  Downloading cftime-1.6.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (8.7 kB)
+Requirement already satisfied: certifi in /usr/local/lib/python3.12/dist-packages (from netCDF4) (2026.5.20)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.12/dist-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.12/dist-packages (from pandas) (2026.2)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (4.63.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (1.5.0)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (26.2)
+Requirement already satisfied: pillow&gt;=8 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (11.3.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib) (3.3.2)
+Requirement already satisfied: scipy&gt;=1.6.0 in /usr/local/lib/python3.12/dist-packages (from scikit-learn) (1.16.3)
+Requirement already satisfied: joblib&gt;=1.2.0 in /usr/local/lib/python3.12/dist-packages (from scikit-learn) (1.5.3)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /usr/local/lib/python3.12/dist-packages (from scikit-learn) (3.6.0)
+Requirement already satisfied: wrapt&lt;3,&gt;=1.10 in /usr/local/lib/python3.12/dist-packages (from deprecated&gt;=1.2.12-&gt;openeo) (2.2.0)
+Requirement already satisfied: pyogrio&gt;=0.7.2 in /usr/local/lib/python3.12/dist-packages (from geopandas&gt;=0.14-&gt;openeo) (0.12.1)
+Requirement already satisfied: pyproj&gt;=3.5.0 in /usr/local/lib/python3.12/dist-packages (from geopandas&gt;=0.14-&gt;openeo) (3.7.2)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.12/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests&gt;=2.26.0-&gt;openeo) (3.4.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.12/dist-packages (from requests&gt;=2.26.0-&gt;openeo) (3.15)
+Downloading openeo-0.50.0-py3-none-any.whl (345 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">345.5/345.5 kB</span> <span class=" -Color -Color-Red">8.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading netcdf4-1.7.4-cp311-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (10.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.1/10.1 MB</span> <span class=" -Color -Color-Red">88.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading deprecated-1.3.1-py2.py3-none-any.whl (11 kB)
+Downloading pystac-1.14.3-py3-none-any.whl (208 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">208.5/208.5 kB</span> <span class=" -Color -Color-Red">11.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading xarray-2025.1.1-py3-none-any.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.2/1.2 MB</span> <span class=" -Color -Color-Red">47.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading cftime-1.6.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">54.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hInstalling collected packages: deprecated, cftime, pystac, netCDF4, xarray, openeo
+  Attempting uninstall: xarray
+    Found existing installation: xarray 2025.12.0
+    Uninstalling xarray-2025.12.0:
+      Successfully uninstalled xarray-2025.12.0
+Successfully installed cftime-1.6.5 deprecated-1.3.1 netCDF4-1.7.4 openeo-0.50.0 pystac-1.14.3 xarray-2025.1.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi :</p>
+<p>Menginstal seluruh library yang dibutuhkan dalam proses analisis data dan machine learning.</p>
+<p>Tujuan :</p>
+<p>Menyiapkan environment agar seluruh proses analisis dapat dijalankan tanpa error.</p>
+</section>
+<hr class="docutils" />
+<section id="import-library">
+<h3>6.2 Import Library<a class="headerlink" href="#import-library" title="Permalink to this heading">#</a></h3>
+<p>Setelah seluruh library berhasil diinstal, langkah berikutnya adalah mengimpor library yang diperlukan ke dalam notebook. Library-library ini akan digunakan pada tahap pengambilan data, preprocessing, visualisasi, hingga pemodelan machine learning.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import openeo
+import netCDF4
+import pandas as pd
+import numpy as np
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsinya adalah :</p>
+<p>Mengimpor library yang akan digunakan dalam seluruh proses analisis.</p>
+<p>Tujuan :</p>
+<p>Mendukung seluruh tahapan analisis mulai dari data hingga model prediksi.</p>
+</section>
+<section id="koneksi-ke-copernicus-data-space-ecosystem">
+<h3>6.3 Koneksi ke Copernicus Data Space Ecosystem<a class="headerlink" href="#koneksi-ke-copernicus-data-space-ecosystem" title="Permalink to this heading">#</a></h3>
+<p>Sebelum mengambil data satelit, kita harus terhubung terlebih dahulu ke layanan Copernicus Data Space Ecosystem. Proses autentikasi dilakukan menggunakan akun Copernicus yang telah dibuat sebelumnya. Setelah berhasil login, Python dapat mengakses berbagai dataset satelit yang tersedia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>connection = openeo.connect(
+    &quot;openeo.dataspace.copernicus.eu&quot;
+).authenticate_oidc()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">Visit <a href="https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=RUBZ-ASNK" title="Authenticate at https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=RUBZ-ASNK" target="_blank" rel="noopener noreferrer">https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=RUBZ-ASNK</a> <a href="#" onclick="navigator.clipboard.writeText('https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=RUBZ-ASNK');return false;" title="Copy authentication URL to clipboard">&#128203;</a> to authenticate.</div><div class="output text_html">✅ Authorized successfully</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using device code flow.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Output Koneksi ke Copernicus:</p>
+<p>Setelah menjalankan kode koneksi OpenEO, sistem akan menampilkan tautan autentikasi yang harus dibuka melalui browser. Pengguna kemudian melakukan login menggunakan akun Copernicus Data Space Ecosystem yang telah dibuat sebelumnya.</p>
+<p>Penjelasan Output:</p>
+<p>Baris pertama menunjukkan URL autentikasi yang harus dibuka untuk proses login.
+Setelah login berhasil, sistem menampilkan pesan Authorized successfully yang menandakan akun telah terverifikasi.
+Pesan Authenticated using device code flow menunjukkan bahwa proses autentikasi menggunakan metode Device Code Authentication, yaitu mekanisme login yang umum digunakan pada Jupyter Notebook atau aplikasi yang tidak memiliki halaman login bawaan.</p>
+</section>
+<section id="menentukan-area-penelitian">
+<h3>6.4 Menentukan Area Penelitian<a class="headerlink" href="#menentukan-area-penelitian" title="Permalink to this heading">#</a></h3>
+<p>Karena penelitian difokuskan pada Kecamatan Sukolilo, Kota Surabaya, maka diperlukan Area of Interest (AOI) yang merepresentasikan batas wilayah penelitian. Area ini ditentukan menggunakan koordinat geografis berbentuk polygon.</p>
+<p>Tujuan pembatasan area adalah agar data yang diambil hanya berasal dari wilayah penelitian sehingga proses pengambilan data menjadi lebih cepat dan efisien.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aoi = {
+    &quot;type&quot;: &quot;Polygon&quot;,
+    &quot;coordinates&quot;: [
+        [
+            [112.82, -7.28],
+            [112.74, -7.28],
+            [112.74, -7.35],
+            [112.82, -7.35],
+            [112.82, -7.28]
+        ]
+    ]
+}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mengambil-dataset-no2-dari-sentinel-5p">
+<h3>6.5 Mengambil Dataset NO₂ dari Sentinel-5P<a class="headerlink" href="#mengambil-dataset-no2-dari-sentinel-5p" title="Permalink to this heading">#</a></h3>
+<p>Setelah area penelitian ditentukan, langkah berikutnya adalah mengambil data Nitrogen Dioksida (NO₂) dari satelit Sentinel-5P. Dataset yang digunakan adalah SENTINEL_5P_L2 dengan parameter band NO₂.</p>
+<p>Data diambil untuk periode 1 Juni 2024 hingga 1 Juni 2025 sehingga diperoleh data time series harian selama satu tahun.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>s5post = connection.load_collection(
+    &quot;SENTINEL_5P_L2&quot;,
+    temporal_extent=[&quot;2024-06-01&quot;, &quot;2025-06-01&quot;],
+    spatial_extent={
+        &quot;west&quot;: 112.74,
+        &quot;south&quot;: -7.35,
+        &quot;east&quot;: 112.82,
+        &quot;north&quot;: -7.28
+    },
+    bands=[&quot;NO2&quot;]
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="agregasi-data-harian">
+<h3>6.6 Agregasi Data Harian<a class="headerlink" href="#agregasi-data-harian" title="Permalink to this heading">#</a></h3>
+<p>Setelah data NO₂ berhasil diambil dari Sentinel-5P, langkah berikutnya adalah melakukan agregasi temporal harian. Proses ini bertujuan untuk mengubah data yang mungkin memiliki lebih dari satu pengamatan dalam satu hari menjadi satu nilai rata-rata per hari.</p>
+<p>Dengan demikian, data yang dihasilkan akan berbentuk time series harian sehingga lebih sesuai untuk proses peramalan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>s5p_daily = s5post.aggregate_temporal_period(
+    period=&quot;day&quot;,
+    reducer=&quot;mean&quot;
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="menjalankan-proses-pengambilan-data">
+<h3>6.7 Menjalankan Proses Pengambilan Data<a class="headerlink" href="#menjalankan-proses-pengambilan-data" title="Permalink to this heading">#</a></h3>
+<p>Setelah dataset dan periode waktu ditentukan, proses pengambilan data dijalankan menggunakan sistem cloud milik Copernicus. Hasil proses ini akan disimpan dalam format NetCDF (.nc) yang umum digunakan untuk data satelit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>job = s5p_daily.execute_batch(
+    title=&quot;NO2_Sukolilo_Surabaya&quot;,
+    outputfile=&quot;NO2_Sukolilo_Surabaya.nc&quot;
+)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: send &#39;start&#39;
+0:00:33 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: queued (progress 0%)
+0:00:39 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: queued (progress 0%)
+0:00:45 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: queued (progress 0%)
+0:00:53 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: queued (progress 0%)
+0:01:03 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: queued (progress 0%)
+0:01:16 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: running (progress N/A)
+0:01:31 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: running (progress N/A)
+0:01:51 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: running (progress N/A)
+0:02:15 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: running (progress N/A)
+0:02:45 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: running (progress N/A)
+0:03:23 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: running (progress N/A)
+0:04:09 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: running (progress N/A)
+0:05:08 Job &#39;j-260603081655474fafbaacd042d05db6&#39;: finished (progress 100%)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="preprocessing-data">
+<h2>7. PreProcessing Data<a class="headerlink" href="#preprocessing-data" title="Permalink to this heading">#</a></h2>
+<section id="membaca-file-netcdf">
+<h3>7.1 Membaca File NetCDF<a class="headerlink" href="#membaca-file-netcdf" title="Permalink to this heading">#</a></h3>
+<p>Setelah proses pengambilan data selesai, file NetCDF dibaca menggunakan library NetCDF4. Tahap ini bertujuan untuk melihat struktur data yang tersimpan di dalam file satelit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+import netCDF4
+
+file_path = &quot;NO2_Sukolilo_Surabaya.nc&quot;
+
+ds = netCDF4.Dataset(file_path)
+
+print(&quot;Variabel dalam file:&quot;)
+print(ds.variables.keys())
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variabel dalam file:
+dict_keys([&#39;t&#39;, &#39;x&#39;, &#39;y&#39;, &#39;crs&#39;, &#39;NO2&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mengambil-variabel-no2-dan-waktu">
+<h3>7.2 Mengambil Variabel NO₂ dan Waktu<a class="headerlink" href="#mengambil-variabel-no2-dan-waktu" title="Permalink to this heading">#</a></h3>
+<p>File NetCDF memiliki beberapa variabel. Pada penelitian ini hanya digunakan variabel waktu (t) dan konsentrasi Nitrogen Dioksida (NO2) sebagai objek analisis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>no2 = ds.variables[&quot;NO2&quot;][:]
+
+time = ds.variables[&quot;t&quot;][:]
+
+time_units = ds.variables[&quot;t&quot;].units
+
+dates = netCDF4.num2date(
+    time,
+    units=time_units
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="melihat-struktur-data">
+<h3>7.3 Melihat Struktur Data<a class="headerlink" href="#melihat-struktur-data" title="Permalink to this heading">#</a></h3>
+<p>Sebelum melakukan preprocessing, perlu dilakukan pemeriksaan bentuk data untuk mengetahui jumlah record dan ukuran grid yang diperoleh dari satelit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(type(no2))
+
+print(len(no2))
+
+print(len(no2[0]))
+
+print(len(no2[0][0]))
+
+print(no2[0][0][0])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ma.MaskedArray&#39;&gt;
+362
+3
+2
+2.0348361e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>Analisis</p>
+<p>Berdasarkan hasil di atas diketahui bahwa data NO₂ berbentuk MaskedArray yang memungkinkan adanya missing value. Dataset terdiri dari 362 record harian dengan ukuran grid spasial 3 × 2 untuk setiap tanggal pengamatan.</p>
+</section>
+<section id="menampilkan-contoh-data">
+<h3>7.4 Menampilkan Contoh Data<a class="headerlink" href="#menampilkan-contoh-data" title="Permalink to this heading">#</a></h3>
+<p>Untuk memahami isi dataset lebih lanjut, beberapa data pertama ditampilkan. Tahap ini bertujuan untuk mengidentifikasi keberadaan missing value yang biasanya ditandai dengan simbol –.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(&quot;Contoh data pertama:&quot;)
+
+for i in range(5):
+    print(no2[i])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contoh data pertama:
+[[2.0348361431388184e-05 3.136975283268839e-05]
+ [2.7731824957299978e-05 3.473311153356917e-05]
+ [2.7731824957299978e-05 3.1783019949216396e-05]]
+[[-- --]
+ [-- --]
+ [-- --]]
+[[5.1556835387600586e-05 5.1556835387600586e-05]
+ [3.986679803347215e-05 3.986679803347215e-05]
+ [3.986679803347215e-05 5.205026172916405e-05]]
+[[4.988355067325756e-05 3.548788299667649e-05]
+ [4.988355067325756e-05 3.152710269205272e-05]
+ [6.797500827815384e-05 3.152710269205272e-05]]
+[[4.208485916024074e-05 3.413308513700031e-05]
+ [4.075754259247333e-05 3.2486314012203366e-05]
+ [4.075754259247333e-05 4.075754259247333e-05]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mengatasi-missing-value-menggunakan-interpolasi-linear">
+<h3>7.5 Mengatasi Missing Value Menggunakan Interpolasi Linear<a class="headerlink" href="#mengatasi-missing-value-menggunakan-interpolasi-linear" title="Permalink to this heading">#</a></h3>
+<p>Data satelit sering mengandung nilai kosong akibat gangguan pengamatan. Oleh karena itu dilakukan interpolasi linear agar nilai yang hilang dapat diisi berdasarkan nilai sebelum dan sesudahnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import pandas as pd
+
+no2_nan = no2.filled(np.nan)
+
+no2_filled = np.zeros(no2_nan.shape)
+
+for i in range(no2_nan.shape[1]):
+    for j in range(no2_nan.shape[2]):
+
+        series = pd.Series(no2_nan[:, i, j])
+
+        series = series.interpolate(
+            method=&#39;linear&#39;,
+            limit_direction=&#39;both&#39;
+        )
+
+        series = series.bfill().ffill()
+
+        no2_filled[:, i, j] = series.values
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(np.isnan(no2_filled).sum())
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mengubah-menjadi-data-time-series-harian">
+<h3>7.6 Mengubah Menjadi Data Time Series Harian<a class="headerlink" href="#mengubah-menjadi-data-time-series-harian" title="Permalink to this heading">#</a></h3>
+<p>Karena setiap hari masih memiliki beberapa nilai grid, maka seluruh nilai dalam satu hari dirata-ratakan sehingga menghasilkan satu nilai NO₂ untuk setiap tanggal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>new_dates = []
+new_no2 = []
+
+for i in range(len(dates)):
+
+    new_dates.append(
+        dates[i].strftime(&#39;%Y-%m-%d&#39;)
+    )
+
+    new_no2.append(
+        np.mean(no2_filled[i])
+    )
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="membentuk-dataframe">
+<h3>7.7 Membentuk DataFrame<a class="headerlink" href="#membentuk-dataframe" title="Permalink to this heading">#</a></h3>
+<p>Data hasil rata-rata harian kemudian dibentuk menjadi DataFrame yang terdiri dari kolom tanggal dan nilai NO₂.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df = pd.DataFrame({
+    &quot;date&quot;: new_dates,
+    &quot;NO2&quot;: new_no2
+})
+
+print(df.head())
+
+print()
+
+df.info()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         date       NO2
+0  2024-06-01  0.000029
+1  2024-06-02  0.000037
+2  2024-06-03  0.000046
+3  2024-06-04  0.000044
+4  2024-06-05  0.000038
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 362 entries, 0 to 361
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   date    362 non-null    object 
+ 1   NO2     362 non-null    float64
+dtypes: float64(1), object(1)
+memory usage: 5.8+ KB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="menyimpan-data-ke-csv">
+<h3>7.8 Menyimpan Data ke CSV<a class="headerlink" href="#menyimpan-data-ke-csv" title="Permalink to this heading">#</a></h3>
+<p>Dataset hasil preprocessing disimpan dalam format CSV agar lebih mudah digunakan pada tahap analisis berikutnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df.to_csv(
+    &quot;NO2_Sukolilo_Surabaya_timeseries.csv&quot;,
+    index=False
+)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pemeriksaan-missing-date">
+<h3>7.9 Pemeriksaan Missing Date<a class="headerlink" href="#pemeriksaan-missing-date" title="Permalink to this heading">#</a></h3>
+<p>Setelah data berbentuk time series harian, dilakukan pengecekan apakah terdapat tanggal yang hilang.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df[&#39;date&#39;] = pd.to_datetime(df[&#39;date&#39;])
+
+start_date = df[&#39;date&#39;].min()
+end_date = df[&#39;date&#39;].max()
+
+full_range = pd.date_range(
+    start=start_date,
+    end=end_date,
+    freq=&#39;D&#39;
+)
+
+missing_dates = full_range.difference(df[&#39;date&#39;])
+
+print(&quot;Jumlah hari missing:&quot;, len(missing_dates))
+print(missing_dates)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah hari missing: 3
+DatetimeIndex([&#39;2024-08-12&#39;, &#39;2025-01-30&#39;, &#39;2025-01-31&#39;], dtype=&#39;datetime64[ns]&#39;, freq=None)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Analisis</p>
+<p>Hasil pengecekan menunjukkan masih terdapat 3 tanggal yang hilang sehingga perlu dilakukan interpolasi kembali agar data time series menjadi lengkap.</p>
+</section>
+<section id="interpolasi-missing-date">
+<h3>7.10 Interpolasi Missing Date<a class="headerlink" href="#interpolasi-missing-date" title="Permalink to this heading">#</a></h3>
+<p>Tanggal yang hilang diperbaiki menggunakan interpolasi berbasis waktu (time interpolation).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df = df.sort_values(&#39;date&#39;)
+
+full_range = pd.date_range(
+    start=df[&#39;date&#39;].min(),
+    end=df[&#39;date&#39;].max(),
+    freq=&#39;D&#39;
+)
+
+df = df.set_index(&#39;date&#39;).reindex(full_range)
+
+df.index.name = &#39;date&#39;
+
+df[&#39;NO2&#39;] = df[&#39;NO2&#39;].interpolate(
+    method=&#39;time&#39;
+)
+
+df[&#39;NO2&#39;] = df[&#39;NO2&#39;].bfill().ffill()
+
+df = df.reset_index()
+
+df.rename(
+    columns={&#39;index&#39;: &#39;date&#39;},
+    inplace=True
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>full_range = pd.date_range(
+    start=df[&#39;date&#39;].min(),
+    end=df[&#39;date&#39;].max(),
+    freq=&#39;D&#39;
+)
+
+missing_dates = full_range.difference(df[&#39;date&#39;])
+
+print(&quot;Jumlah hari missing:&quot;, len(missing_dates))
+print(missing_dates)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah hari missing: 0
+DatetimeIndex([], dtype=&#39;datetime64[ns]&#39;, freq=&#39;D&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="menyimpan-dataset-final">
+<h3>7.11 Menyimpan Dataset Final<a class="headerlink" href="#menyimpan-dataset-final" title="Permalink to this heading">#</a></h3>
+<p>Setelah seluruh missing value berhasil diperbaiki, dataset final disimpan kembali dan siap digunakan untuk proses pemodelan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df.to_csv(
+    &quot;NO2_Sukolilo_Surabaya_timeseries_final.csv&quot;,
+    index=False
+)
+
+print(df.head())
+
+print()
+
+df.info()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        date       NO2
+0 2024-06-01  0.000029
+1 2024-06-02  0.000037
+2 2024-06-03  0.000046
+3 2024-06-04  0.000044
+4 2024-06-05  0.000038
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 365 entries, 0 to 364
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype         
+---  ------  --------------  -----         
+ 0   date    365 non-null    datetime64[ns]
+ 1   NO2     365 non-null    float64       
+dtypes: datetime64[ns](1), float64(1)
+memory usage: 5.8 KB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modeling-menggunakan-knn-regression">
+<h1>4. Modeling Menggunakan KNN Regression<a class="headerlink" href="#modeling-menggunakan-knn-regression" title="Permalink to this heading">#</a></h1>
+<p>Setelah proses preprocessing selesai dilakukan, tahap berikutnya adalah membangun model prediksi menggunakan algoritma K-Nearest Neighbors (KNN) Regression. Tujuan dari tahap ini adalah memprediksi konsentrasi NO₂ pada hari berikutnya berdasarkan data historis beberapa hari sebelumnya.</p>
+<p>Pada penelitian ini digunakan dua skenario, yaitu menggunakan 4 hari sebelumnya dan 10 hari sebelumnya sebagai fitur prediksi. Kedua skenario tersebut dibandingkan untuk mengetahui jumlah lag yang memberikan performa terbaik.</p>
+<hr class="docutils" />
+<section id="normalisasi-data">
+<h2>4.1 Normalisasi Data<a class="headerlink" href="#normalisasi-data" title="Permalink to this heading">#</a></h2>
+<p>Sebelum membangun model KNN, data perlu dinormalisasi terlebih dahulu. Hal ini dilakukan karena algoritma KNN menggunakan perhitungan jarak antar data. Jika skala data terlalu besar atau tidak seragam, maka hasil perhitungan jarak dapat menjadi kurang optimal.</p>
+<p>Metode normalisasi yang digunakan adalah Min-Max Scaling, yaitu mengubah rentang data menjadi 0 hingga 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+
+df[&#39;NO2_scaled&#39;] = scaler.fit_transform(
+    df[[&#39;NO2&#39;]]
+)
+
+print(df.head())
+print()
+df.info()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        date       NO2  NO2_scaled
+0 2024-06-01  0.000029    0.181199
+1 2024-06-02  0.000037    0.247102
+2 2024-06-03  0.000046    0.313004
+3 2024-06-04  0.000044    0.301945
+4 2024-06-05  0.000038    0.255899
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 365 entries, 0 to 364
+Data columns (total 3 columns):
+ #   Column      Non-Null Count  Dtype         
+---  ------      --------------  -----         
+ 0   date        365 non-null    datetime64[ns]
+ 1   NO2         365 non-null    float64       
+ 2   NO2_scaled  365 non-null    float64       
+dtypes: datetime64[ns](1), float64(2)
+memory usage: 8.7 KB
+</pre></div>
+</div>
+</div>
+</div>
+<section id="hasil">
+<h3>Hasil<a class="headerlink" href="#hasil" title="Permalink to this heading">#</a></h3>
+<p>Output akan menampilkan kolom baru bernama <code class="docutils literal notranslate"><span class="pre">NO2_scaled</span></code> yang berisi data hasil normalisasi.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="membuat-fungsi-transformasi-time-series">
+<h2>4.2 Membuat Fungsi Transformasi Time Series<a class="headerlink" href="#membuat-fungsi-transformasi-time-series" title="Permalink to this heading">#</a></h2>
+<p>Data time series tidak dapat langsung digunakan oleh algoritma KNN karena model membutuhkan data dalam bentuk fitur dan target. Oleh karena itu dilakukan transformasi data menggunakan metode lag.</p>
+<p>Pada metode ini, nilai NO₂ beberapa hari sebelumnya digunakan sebagai fitur untuk memprediksi nilai NO₂ pada hari berikutnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+
+def create_supervised(data, n_lag=4):
+
+    df_supervised = pd.DataFrame()
+
+    for i in range(n_lag, 0, -1):
+        df_supervised[f&#39;NO2(t-{i})&#39;] = data.shift(i)
+
+    df_supervised[&#39;NO2(t)&#39;] = data
+
+    df_supervised.dropna(inplace=True)
+
+    return df_supervised
+</pre></div>
+</div>
+</div>
+</div>
+<section id="penjelasan">
+<h3>Penjelasan<a class="headerlink" href="#penjelasan" title="Permalink to this heading">#</a></h3>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">create_supervised()</span></code> digunakan untuk mengubah data time series menjadi bentuk supervised learning.</p>
+<p>Sebagai contoh:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>t-4</p></th>
+<th class="head"><p>t-3</p></th>
+<th class="head"><p>t-2</p></th>
+<th class="head"><p>t-1</p></th>
+<th class="head"><p>t</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.20</p></td>
+<td><p>0.18</p></td>
+<td><p>0.22</p></td>
+<td><p>0.25</p></td>
+<td><p>0.24</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Empat nilai sebelumnya digunakan sebagai fitur untuk memprediksi nilai pada hari ke-t.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="membentuk-dataset-lag-4-hari">
+<h2>4.3 Membentuk Dataset Lag 4 Hari<a class="headerlink" href="#membentuk-dataset-lag-4-hari" title="Permalink to this heading">#</a></h2>
+<p>Pada skenario pertama digunakan empat hari sebelumnya sebagai fitur prediksi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>supervised_df = create_supervised(
+    df[&#39;NO2_scaled&#39;],
+    n_lag=4
+)
+
+print(supervised_df.head())
+print()
+print(supervised_df.shape)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   NO2(t-4)  NO2(t-3)  NO2(t-2)  NO2(t-1)    NO2(t)
+4  0.181199  0.247102  0.313004  0.301945  0.255899
+5  0.247102  0.313004  0.301945  0.255899  0.155689
+6  0.313004  0.301945  0.255899  0.155689  0.233893
+7  0.301945  0.255899  0.155689  0.233893  0.132820
+8  0.255899  0.155689  0.233893  0.132820  0.130400
+
+(361, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Penjelasan<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Dataset ini memiliki empat fitur:</p>
+<ul class="simple">
+<li><p>NO2(t-4)</p></li>
+<li><p>NO2(t-3)</p></li>
+<li><p>NO2(t-2)</p></li>
+<li><p>NO2(t-1)</p></li>
+</ul>
+<p>dan satu target:</p>
+<ul class="simple">
+<li><p>NO2(t)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="membentuk-dataset-lag-10-hari">
+<h2>4.4 Membentuk Dataset Lag 10 Hari<a class="headerlink" href="#membentuk-dataset-lag-10-hari" title="Permalink to this heading">#</a></h2>
+<p>Pada skenario kedua digunakan sepuluh hari sebelumnya sebagai fitur prediksi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>supervised_df10 = create_supervised(
+    df[&#39;NO2_scaled&#39;],
+    n_lag=10
+)
+
+print(supervised_df10.head())
+print()
+print(supervised_df10.shape)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    NO2(t-10)  NO2(t-9)  NO2(t-8)  NO2(t-7)  NO2(t-6)  NO2(t-5)  NO2(t-4)  \
+10   0.181199  0.247102  0.313004  0.301945  0.255899  0.155689  0.233893   
+11   0.247102  0.313004  0.301945  0.255899  0.155689  0.233893  0.132820   
+12   0.313004  0.301945  0.255899  0.155689  0.233893  0.132820  0.130400   
+13   0.301945  0.255899  0.155689  0.233893  0.132820  0.130400  0.195761   
+14   0.255899  0.155689  0.233893  0.132820  0.130400  0.195761  0.096596   
+
+    NO2(t-3)  NO2(t-2)  NO2(t-1)    NO2(t)  
+10  0.132820  0.130400  0.195761  0.096596  
+11  0.130400  0.195761  0.096596  0.115126  
+12  0.195761  0.096596  0.115126  0.364547  
+13  0.096596  0.115126  0.364547  0.186439  
+14  0.115126  0.364547  0.186439  0.139615  
+
+(355, 11)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3>Penjelasan<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Dataset ini memiliki sepuluh fitur historis yang digunakan untuk memprediksi nilai NO₂ pada hari berikutnya.</p>
+<p>Tujuannya adalah untuk mengetahui apakah penggunaan data historis yang lebih panjang mampu meningkatkan performa model.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="membangun-fungsi-training-knn-regression">
+<h2>4.5 Membangun Fungsi Training KNN Regression<a class="headerlink" href="#membangun-fungsi-training-knn-regression" title="Permalink to this heading">#</a></h2>
+<p>Agar proses pelatihan lebih mudah dilakukan pada kedua skenario, dibuat fungsi khusus untuk melakukan training, testing, prediksi, dan evaluasi model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from sklearn.neighbors import KNeighborsRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+import numpy as np
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def train_knn(df_supervised, model_name=&quot;&quot;):
+
+    X = df_supervised.drop(
+        columns=[&#39;NO2(t)&#39;]
+    ).values
+
+    y = df_supervised[&#39;NO2(t)&#39;].values
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X,
+        y,
+        test_size=0.2,
+        shuffle=False
+    )
+
+    knn = KNeighborsRegressor(
+        n_neighbors=5
+    )
+
+    knn.fit(X_train, y_train)
+
+    y_pred = knn.predict(X_test)
+
+    mse = mean_squared_error(
+        y_test,
+        y_pred
+    )
+
+    rmse = np.sqrt(mse)
+
+    r2 = r2_score(
+        y_test,
+        y_pred
+    )
+
+    print(f&quot;\n=== {model_name} ===&quot;)
+    print(f&quot;Train Size: {len(X_train)}&quot;)
+    print(f&quot;Test Size : {len(X_test)}&quot;)
+    print(f&quot;RMSE      : {rmse:.6f}&quot;)
+    print(f&quot;R² Score  : {r2:.4f}&quot;)
+
+    return y_test, y_pred
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>Penjelasan<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Pada fungsi ini dilakukan beberapa proses:</p>
+<ol class="arabic simple">
+<li><p>Memisahkan fitur dan target.</p></li>
+<li><p>Membagi data training dan testing dengan rasio 80:20.</p></li>
+<li><p>Membangun model KNN Regression.</p></li>
+<li><p>Melatih model menggunakan data training.</p></li>
+<li><p>Melakukan prediksi terhadap data testing.</p></li>
+<li><p>Menghitung nilai RMSE dan R² Score.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="training-model-knn-menggunakan-4-hari-sebelumnya">
+<h2>4.6 Training Model KNN Menggunakan 4 Hari Sebelumnya<a class="headerlink" href="#training-model-knn-menggunakan-4-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
+<p>Model pertama dibangun menggunakan empat hari sebelumnya sebagai fitur prediksi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>y_test_4, y_pred_4 = train_knn(
+    supervised_df,
+    &quot;KNN - 4 Hari Sebelumnya&quot;
+)
+
+y_test_10, y_pred_10 = train_knn(
+    supervised_df10,
+    &quot;KNN - 10 Hari Sebelumnya&quot;
+)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== KNN - 4 Hari Sebelumnya ===
+Train Size: 288
+Test Size : 73
+RMSE      : 0.054343
+R² Score  : 0.7310
+
+=== KNN - 10 Hari Sebelumnya ===
+Train Size: 284
+Test Size : 71
+RMSE      : 0.073509
+R² Score  : 0.5007
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id4">
+<h3>Penjelasan<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>Model akan mencari pola hubungan antara empat hari sebelumnya dengan nilai NO₂ pada hari berikutnya.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya">
+<h2>4.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya<a class="headerlink" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
+<p>Setelah model KNN berhasil dilatih, langkah berikutnya adalah melakukan visualisasi hasil prediksi. Visualisasi ini bertujuan untuk membandingkan nilai aktual NO₂ dengan nilai hasil prediksi yang dihasilkan oleh model KNN.</p>
+<p>Dengan membandingkan kedua garis pada grafik, kita dapat melihat apakah model mampu mengikuti pola perubahan data yang sebenarnya. Semakin dekat posisi garis prediksi terhadap garis aktual, maka semakin baik kemampuan model dalam melakukan prediksi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+import numpy as np
+
+plt.figure(figsize=(10,5))
+
+plt.plot(
+    np.arange(len(y_test_4)),
+    y_test_4,
+    label=&quot;Actual&quot;
+)
+
+plt.plot(
+    np.arange(len(y_pred_4)),
+    y_pred_4,
+    label=&quot;Predicted&quot;
+)
+
+plt.title(&quot;KNN Regression - 4 Hari Sebelumnya&quot;)
+
+plt.xlabel(&quot;Sample Index&quot;)
+
+plt.ylabel(&quot;NO2 Scaled&quot;)
+
+plt.legend()
+
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/96b03c53cdab60336393ad985ffd950e9feaf34b587f5793549f984c90b1ce67.png" src="_images/96b03c53cdab60336393ad985ffd950e9feaf34b587f5793549f984c90b1ce67.png" />
+</div>
+</div>
+<section id="fungsi-kode">
+<h3>Fungsi Kode<a class="headerlink" href="#fungsi-kode" title="Permalink to this heading">#</a></h3>
+<p>Kode di atas digunakan untuk membuat grafik perbandingan antara data aktual dan data hasil prediksi model KNN yang menggunakan empat hari sebelumnya sebagai fitur prediksi.</p>
+</section>
+<section id="tujuan-visualisasi">
+<h3>Tujuan Visualisasi<a class="headerlink" href="#tujuan-visualisasi" title="Permalink to this heading">#</a></h3>
+<p>Visualisasi dilakukan untuk:</p>
+<ol class="arabic simple">
+<li><p>Melihat kemampuan model dalam mengikuti pola perubahan konsentrasi NO₂.</p></li>
+<li><p>Membandingkan nilai prediksi dengan nilai aktual secara langsung.</p></li>
+<li><p>Mengidentifikasi bagian data yang berhasil diprediksi dengan baik maupun yang masih memiliki selisih cukup besar.</p></li>
+<li><p>Mempermudah interpretasi hasil model dibandingkan hanya melihat nilai RMSE dan R² Score.</p></li>
+</ol>
+</section>
+<section id="penjelasan-grafik">
+<h3>Penjelasan Grafik<a class="headerlink" href="#penjelasan-grafik" title="Permalink to this heading">#</a></h3>
+<p>Pada grafik yang dihasilkan terdapat dua garis, yaitu:</p>
+<ul class="simple">
+<li><p><strong>Actual</strong> menunjukkan nilai konsentrasi NO₂ sebenarnya pada data pengujian.</p></li>
+<li><p><strong>Predicted</strong> menunjukkan nilai konsentrasi NO₂ hasil prediksi model KNN.</p></li>
+</ul>
+<p>Sumbu <strong>X</strong> menunjukkan urutan data pengujian (<em>sample index</em>), sedangkan sumbu <strong>Y</strong> menunjukkan nilai konsentrasi NO₂ yang telah dinormalisasi (<em>scaled value</em>).</p>
+</section>
+<section id="analisis-hasil">
+<h3>Analisis Hasil<a class="headerlink" href="#analisis-hasil" title="Permalink to this heading">#</a></h3>
+<p>Berdasarkan grafik yang dihasilkan, terlihat bahwa garis prediksi mampu mengikuti sebagian besar pola pergerakan garis aktual. Meskipun terdapat beberapa titik yang tidak tepat sama, secara umum model berhasil menangkap tren perubahan konsentrasi NO₂ pada wilayah penelitian.</p>
+<p>Hasil visualisasi ini juga sejalan dengan nilai evaluasi yang diperoleh sebelumnya, yaitu:</p>
+<ul class="simple">
+<li><p>RMSE = <strong>0.054343</strong></p></li>
+<li><p>R² Score = <strong>0.7310</strong></p></li>
+</ul>
+<p>Nilai RMSE yang relatif kecil menunjukkan bahwa rata-rata kesalahan prediksi model cukup rendah. Selain itu, nilai R² sebesar 0.7310 menunjukkan bahwa model mampu menjelaskan sekitar 73,10% variasi data konsentrasi NO₂ pada data pengujian.</p>
+<p>Dengan demikian, model KNN yang menggunakan empat hari sebelumnya sebagai fitur prediksi dapat dikatakan memiliki performa yang cukup baik dalam memprediksi konsentrasi NO₂ harian di Kecamatan Sukolilo, Kota Surabaya.</p>
+</section>
+</section>
+<section id="visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya">
+<h2>4.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya<a class="headerlink" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
+<p>Setelah model KNN dengan skenario sepuluh hari sebelumnya berhasil dilatih, langkah berikutnya adalah melakukan visualisasi hasil prediksi. Visualisasi ini bertujuan untuk membandingkan nilai aktual NO₂ dengan nilai hasil prediksi yang dihasilkan oleh model KNN menggunakan informasi dari sepuluh hari sebelumnya.</p>
+<p>Dengan membandingkan kedua garis pada grafik, dapat diamati sejauh mana model mampu mengikuti pola perubahan konsentrasi NO₂ yang sebenarnya. Selain itu, visualisasi ini juga digunakan untuk membandingkan performa model 10 hari sebelumnya dengan model 4 hari sebelumnya yang telah dibangun pada tahap sebelumnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(10,5))
+
+plt.plot(
+    np.arange(len(y_test_10)),
+    y_test_10,
+    label=&quot;Actual&quot;
+)
+
+plt.plot(
+    np.arange(len(y_pred_10)),
+    y_pred_10,
+    label=&quot;Predicted&quot;
+)
+
+plt.title(&quot;KNN Regression - 10 Hari Sebelumnya&quot;)
+
+plt.xlabel(&quot;Sample Index&quot;)
+
+plt.ylabel(&quot;NO2 Scaled&quot;)
+
+plt.legend()
+
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/66658d18646614f58a28b3e3009f6468431cc8cb218026aa75482dfcd2ba5c28.png" src="_images/66658d18646614f58a28b3e3009f6468431cc8cb218026aa75482dfcd2ba5c28.png" />
+</div>
+</div>
+<section id="id5">
+<h3>Fungsi Kode<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>Kode di atas digunakan untuk membuat grafik perbandingan antara data aktual dan data hasil prediksi model KNN yang menggunakan sepuluh hari sebelumnya sebagai fitur prediksi.</p>
+</section>
+<section id="id6">
+<h3>Tujuan Visualisasi<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>Visualisasi dilakukan untuk:</p>
+<ol class="arabic simple">
+<li><p>Melihat kemampuan model dalam mengikuti pola perubahan konsentrasi NO₂.</p></li>
+<li><p>Membandingkan nilai prediksi dengan nilai aktual secara langsung.</p></li>
+<li><p>Mengidentifikasi bagian data yang berhasil diprediksi dengan baik maupun yang masih memiliki selisih cukup besar.</p></li>
+<li><p>Mengevaluasi pengaruh penggunaan sepuluh hari data historis terhadap performa model KNN.</p></li>
+<li><p>Membandingkan hasil model 10 hari sebelumnya dengan model 4 hari sebelumnya.</p></li>
+</ol>
+</section>
+<section id="id7">
+<h3>Penjelasan Grafik<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p>Pada grafik yang dihasilkan terdapat dua garis, yaitu:</p>
+<ul class="simple">
+<li><p><strong>Actual</strong> menunjukkan nilai konsentrasi NO₂ sebenarnya pada data pengujian.</p></li>
+<li><p><strong>Predicted</strong> menunjukkan nilai konsentrasi NO₂ hasil prediksi model KNN.</p></li>
+</ul>
+<p>Sumbu <strong>X</strong> menunjukkan urutan data pengujian (<em>sample index</em>), sedangkan sumbu <strong>Y</strong> menunjukkan nilai konsentrasi NO₂ yang telah dinormalisasi (<em>scaled value</em>).</p>
+</section>
+<section id="id8">
+<h3>Analisis Hasil<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<p>Berdasarkan grafik yang dihasilkan, terlihat bahwa garis prediksi masih mampu mengikuti pola umum perubahan konsentrasi NO₂. Namun, pada beberapa bagian terdapat perbedaan yang lebih besar antara garis prediksi dan garis aktual dibandingkan model yang menggunakan empat hari sebelumnya.</p>
+<p>Hasil visualisasi ini sejalan dengan nilai evaluasi yang diperoleh sebelumnya, yaitu:</p>
+<ul class="simple">
+<li><p>RMSE = <strong>0.073509</strong></p></li>
+<li><p>R² Score = <strong>0.5007</strong></p></li>
+</ul>
+<p>Nilai RMSE yang lebih besar menunjukkan bahwa kesalahan prediksi model meningkat dibandingkan skenario empat hari sebelumnya. Selain itu, nilai R² sebesar 0.5007 menunjukkan bahwa model hanya mampu menjelaskan sekitar 50,07% variasi data konsentrasi NO₂ pada data pengujian.</p>
+<p>Berdasarkan perbandingan kedua skenario, model KNN yang menggunakan empat hari sebelumnya menghasilkan performa yang lebih baik dibandingkan model yang menggunakan sepuluh hari sebelumnya. Hal ini mengindikasikan bahwa perubahan konsentrasi NO₂ di Kecamatan Sukolilo lebih dipengaruhi oleh kondisi beberapa hari terakhir dibandingkan data historis yang terlalu panjang.</p>
+</section>
+</section>
+<section id="visualisasi-time-series-konsentrasi-no2-harian">
+<h2>4.9 Visualisasi Time Series Konsentrasi NO₂ Harian<a class="headerlink" href="#visualisasi-time-series-konsentrasi-no2-harian" title="Permalink to this heading">#</a></h2>
+<p>Setelah seluruh proses preprocessing selesai dilakukan, langkah berikutnya adalah membuat visualisasi data time series. Visualisasi ini bertujuan untuk melihat pola perubahan konsentrasi Nitrogen Dioksida (NO₂) di Kecamatan Sukolilo, Kota Surabaya selama periode pengamatan.</p>
+<p>Melalui grafik time series, kita dapat mengamati tren, fluktuasi, serta perubahan konsentrasi NO₂ dari waktu ke waktu. Tahap ini penting dilakukan sebelum membangun model prediksi karena dapat membantu memahami karakteristik data yang akan digunakan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+
+plt.figure(figsize=(12,5))
+plt.plot(df[&quot;date&quot;], df[&quot;NO2&quot;])
+
+plt.title(&quot;Konsentrasi NO₂ Harian di Kecamatan Sukolilo, Kota Surabaya&quot;)
+plt.xlabel(&quot;Tanggal&quot;)
+plt.ylabel(&quot;Konsentrasi NO₂&quot;)
+plt.xticks(rotation=45)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8cdade014a8ecfcc3bd8a082d124e381b850585cc5154a544f102d46cddd822f.png" src="_images/8cdade014a8ecfcc3bd8a082d124e381b850585cc5154a544f102d46cddd822f.png" />
+</div>
+</div>
+<section id="id9">
+<h3>Fungsi Kode<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<p>Kode di atas digunakan untuk membuat grafik time series yang menampilkan perubahan konsentrasi NO₂ harian berdasarkan tanggal pengamatan.</p>
+</section>
+<section id="id10">
+<h3>Tujuan Visualisasi<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<p>Visualisasi dilakukan untuk:</p>
+<ol class="arabic simple">
+<li><p>Melihat pola perubahan konsentrasi NO₂ selama periode pengamatan.</p></li>
+<li><p>Mengidentifikasi adanya tren kenaikan atau penurunan konsentrasi NO₂.</p></li>
+<li><p>Mengamati fluktuasi data dari hari ke hari.</p></li>
+<li><p>Memastikan data telah siap digunakan untuk proses pemodelan time series.</p></li>
+<li><p>Memberikan gambaran awal mengenai karakteristik data sebelum dilakukan prediksi menggunakan algoritma KNN Regression.</p></li>
+</ol>
+</section>
+<section id="id11">
+<h3>Penjelasan Grafik<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<p>Pada grafik yang dihasilkan:</p>
+<ul class="simple">
+<li><p>Sumbu <strong>X</strong> menunjukkan tanggal pengamatan.</p></li>
+<li><p>Sumbu <strong>Y</strong> menunjukkan nilai konsentrasi NO₂ harian.</p></li>
+<li><p>Setiap titik pada grafik merepresentasikan rata-rata konsentrasi NO₂ pada satu hari tertentu di wilayah Kecamatan Sukolilo.</p></li>
+</ul>
+<p>Garis yang terbentuk menunjukkan perubahan konsentrasi NO₂ dari waktu ke waktu selama periode pengamatan.</p>
+</section>
+<section id="id12">
+<h3>Analisis Hasil<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<p>Berdasarkan grafik time series yang dihasilkan, terlihat bahwa konsentrasi NO₂ mengalami fluktuasi dari hari ke hari. Fluktuasi ini menunjukkan bahwa tingkat pencemaran udara tidak selalu berada pada nilai yang sama, melainkan dipengaruhi oleh berbagai faktor seperti aktivitas transportasi, aktivitas industri, kondisi cuaca, serta faktor lingkungan lainnya.</p>
+<p>Selain itu, tidak terlihat adanya nilai yang hilang (<em>missing value</em>) pada grafik, yang menunjukkan bahwa proses preprocessing dan interpolasi data telah berhasil dilakukan dengan baik. Dengan demikian, dataset telah siap digunakan pada tahap pemodelan menggunakan algoritma KNN Regression.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="final">
+<h1>FINAL<a class="headerlink" href="#final" title="Permalink to this heading">#</a></h1>
+<section id="menyimpan-data-csv">
+<h2>Menyimpan data CSV<a class="headerlink" href="#menyimpan-data-csv" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df.to_csv(&quot;NO2_Sukolilo_Surabaya.csv&quot;, index=False)
+
+print(&quot;CSV berhasil disimpan&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CSV berhasil disimpan
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Regresi_Linear.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pertemuan 13 | Regresi Linier</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penelitian">2. Tujuan Penelitian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dan-sumber-data">3. Data dan Sumber Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-studi">4. Wilayah Studi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi">5. Metodologi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">6. Pengumpulan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalasi-library">6.1 Instalasi Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">6.2 Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-copernicus-data-space-ecosystem">6.3 Koneksi ke Copernicus Data Space Ecosystem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-area-penelitian">6.4 Menentukan Area Penelitian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-dataset-no2-dari-sentinel-5p">6.5 Mengambil Dataset NO₂ dari Sentinel-5P</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-data-harian">6.6 Agregasi Data Harian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-proses-pengambilan-data">6.7 Menjalankan Proses Pengambilan Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">7. PreProcessing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-file-netcdf">7.1 Membaca File NetCDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-variabel-no2-dan-waktu">7.2 Mengambil Variabel NO₂ dan Waktu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melihat-struktur-data">7.3 Melihat Struktur Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-contoh-data">7.4 Menampilkan Contoh Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengatasi-missing-value-menggunakan-interpolasi-linear">7.5 Mengatasi Missing Value Menggunakan Interpolasi Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengubah-menjadi-data-time-series-harian">7.6 Mengubah Menjadi Data Time Series Harian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataframe">7.7 Membentuk DataFrame</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-ke-csv">7.8 Menyimpan Data ke CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-missing-date">7.9 Pemeriksaan Missing Date</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolasi-missing-date">7.10 Interpolasi Missing Date</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-dataset-final">7.11 Menyimpan Dataset Final</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-menggunakan-knn-regression">4. Modeling Menggunakan KNN Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">4.1 Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil">Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi-transformasi-time-series">4.2 Membuat Fungsi Transformasi Time Series</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-4-hari">4.3 Membentuk Dataset Lag 4 Hari</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-10-hari">4.4 Membentuk Dataset Lag 10 Hari</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membangun-fungsi-training-knn-regression">4.5 Membangun Fungsi Training KNN Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-knn-menggunakan-4-hari-sebelumnya">4.6 Training Model KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Penjelasan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya">4.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-kode">Fungsi Kode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-visualisasi">Tujuan Visualisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-grafik">Penjelasan Grafik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">Analisis Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya">4.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Fungsi Kode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Tujuan Visualisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Penjelasan Grafik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analisis Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-konsentrasi-no2-harian">4.9 Visualisasi Time Series Konsentrasi NO₂ Harian</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Fungsi Kode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Tujuan Visualisasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Penjelasan Grafik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Analisis Hasil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final">FINAL</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-csv">Menyimpan data CSV</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dhafin Rizqika Akhmad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
