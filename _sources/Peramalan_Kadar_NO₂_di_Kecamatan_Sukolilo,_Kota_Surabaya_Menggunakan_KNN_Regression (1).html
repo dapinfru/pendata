@@ -278,6 +278,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Peramalan_Kadar_NO%E2%82%82_di_Kecamatan_Sukolilo%2C_Kota_Surabaya_Menggunakan_KNN_Regression%20%281%29.html">Pertemuan 14 | Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="../ANALISA_DATA_PERTEMUAN_15.html">PERTEMUAN 15 | Analisa Data</a></li>
+
+
+
+
 </ul>
 
     </div>
@@ -522,46 +527,46 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-menggunakan-knn-regression">4. Modeling Menggunakan KNN Regression</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">4.1 Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-menggunakan-knn-regression">8. Modeling Menggunakan KNN Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">8.1 Normalisasi Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil">Hasil</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi-transformasi-time-series">4.2 Membuat Fungsi Transformasi Time Series</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi-transformasi-time-series">8.2 Membuat Fungsi Transformasi Time Series</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-4-hari">4.3 Membentuk Dataset Lag 4 Hari</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-4-hari">8.3 Membentuk Dataset Lag 4 Hari</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-10-hari">4.4 Membentuk Dataset Lag 10 Hari</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-10-hari">8.4 Membentuk Dataset Lag 10 Hari</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membangun-fungsi-training-knn-regression">4.5 Membangun Fungsi Training KNN Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membangun-fungsi-training-knn-regression">8.5 Membangun Fungsi Training KNN Regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-knn-menggunakan-4-hari-sebelumnya">4.6 Training Model KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-knn-menggunakan-4-hari-sebelumnya">8.6 Training Model KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya">4.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya">8.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-kode">Fungsi Kode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-visualisasi">Tujuan Visualisasi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-grafik">Penjelasan Grafik</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">Analisis Hasil</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya">4.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya">8.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Fungsi Kode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Tujuan Visualisasi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Penjelasan Grafik</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analisis Hasil</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-konsentrasi-no2-harian">4.9 Visualisasi Time Series Konsentrasi NO₂ Harian</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-konsentrasi-no2-harian">8.9 Visualisasi Time Series Konsentrasi NO₂ Harian</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Fungsi Kode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Tujuan Visualisasi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Penjelasan Grafik</a></li>
@@ -1212,12 +1217,12 @@ memory usage: 5.8 KB
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="modeling-menggunakan-knn-regression">
-<h1>4. Modeling Menggunakan KNN Regression<a class="headerlink" href="#modeling-menggunakan-knn-regression" title="Permalink to this heading">#</a></h1>
+<h1>8. Modeling Menggunakan KNN Regression<a class="headerlink" href="#modeling-menggunakan-knn-regression" title="Permalink to this heading">#</a></h1>
 <p>Setelah proses preprocessing selesai dilakukan, tahap berikutnya adalah membangun model prediksi menggunakan algoritma K-Nearest Neighbors (KNN) Regression. Tujuan dari tahap ini adalah memprediksi konsentrasi NO₂ pada hari berikutnya berdasarkan data historis beberapa hari sebelumnya.</p>
 <p>Pada penelitian ini digunakan dua skenario, yaitu menggunakan 4 hari sebelumnya dan 10 hari sebelumnya sebagai fitur prediksi. Kedua skenario tersebut dibandingkan untuk mengetahui jumlah lag yang memberikan performa terbaik.</p>
 <hr class="docutils" />
 <section id="normalisasi-data">
-<h2>4.1 Normalisasi Data<a class="headerlink" href="#normalisasi-data" title="Permalink to this heading">#</a></h2>
+<h2>8.1 Normalisasi Data<a class="headerlink" href="#normalisasi-data" title="Permalink to this heading">#</a></h2>
 <p>Sebelum membangun model KNN, data perlu dinormalisasi terlebih dahulu. Hal ini dilakukan karena algoritma KNN menggunakan perhitungan jarak antar data. Jika skala data terlalu besar atau tidak seragam, maka hasil perhitungan jarak dapat menjadi kurang optimal.</p>
 <p>Metode normalisasi yang digunakan adalah Min-Max Scaling, yaitu mengubah rentang data menjadi 0 hingga 1.</p>
 <div class="cell docutils container">
@@ -1265,7 +1270,7 @@ memory usage: 8.7 KB
 </section>
 <hr class="docutils" />
 <section id="membuat-fungsi-transformasi-time-series">
-<h2>4.2 Membuat Fungsi Transformasi Time Series<a class="headerlink" href="#membuat-fungsi-transformasi-time-series" title="Permalink to this heading">#</a></h2>
+<h2>8.2 Membuat Fungsi Transformasi Time Series<a class="headerlink" href="#membuat-fungsi-transformasi-time-series" title="Permalink to this heading">#</a></h2>
 <p>Data time series tidak dapat langsung digunakan oleh algoritma KNN karena model membutuhkan data dalam bentuk fitur dan target. Oleh karena itu dilakukan transformasi data menggunakan metode lag.</p>
 <p>Pada metode ini, nilai NO₂ beberapa hari sebelumnya digunakan sebagai fitur untuk memprediksi nilai NO₂ pada hari berikutnya.</p>
 <div class="cell docutils container">
@@ -1316,7 +1321,7 @@ def create_supervised(data, n_lag=4):
 </section>
 <hr class="docutils" />
 <section id="membentuk-dataset-lag-4-hari">
-<h2>4.3 Membentuk Dataset Lag 4 Hari<a class="headerlink" href="#membentuk-dataset-lag-4-hari" title="Permalink to this heading">#</a></h2>
+<h2>8.3 Membentuk Dataset Lag 4 Hari<a class="headerlink" href="#membentuk-dataset-lag-4-hari" title="Permalink to this heading">#</a></h2>
 <p>Pada skenario pertama digunakan empat hari sebelumnya sebagai fitur prediksi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1361,7 +1366,7 @@ print(supervised_df.shape)
 </section>
 <hr class="docutils" />
 <section id="membentuk-dataset-lag-10-hari">
-<h2>4.4 Membentuk Dataset Lag 10 Hari<a class="headerlink" href="#membentuk-dataset-lag-10-hari" title="Permalink to this heading">#</a></h2>
+<h2>8.4 Membentuk Dataset Lag 10 Hari<a class="headerlink" href="#membentuk-dataset-lag-10-hari" title="Permalink to this heading">#</a></h2>
 <p>Pada skenario kedua digunakan sepuluh hari sebelumnya sebagai fitur prediksi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1404,7 +1409,7 @@ print(supervised_df10.shape)
 </section>
 <hr class="docutils" />
 <section id="membangun-fungsi-training-knn-regression">
-<h2>4.5 Membangun Fungsi Training KNN Regression<a class="headerlink" href="#membangun-fungsi-training-knn-regression" title="Permalink to this heading">#</a></h2>
+<h2>8.5 Membangun Fungsi Training KNN Regression<a class="headerlink" href="#membangun-fungsi-training-knn-regression" title="Permalink to this heading">#</a></h2>
 <p>Agar proses pelatihan lebih mudah dilakukan pada kedua skenario, dibuat fungsi khusus untuk melakukan training, testing, prediksi, dan evaluasi model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1479,7 +1484,7 @@ import numpy as np
 </section>
 <hr class="docutils" />
 <section id="training-model-knn-menggunakan-4-hari-sebelumnya">
-<h2>4.6 Training Model KNN Menggunakan 4 Hari Sebelumnya<a class="headerlink" href="#training-model-knn-menggunakan-4-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
+<h2>8.6 Training Model KNN Menggunakan 4 Hari Sebelumnya<a class="headerlink" href="#training-model-knn-menggunakan-4-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
 <p>Model pertama dibangun menggunakan empat hari sebelumnya sebagai fitur prediksi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1518,7 +1523,7 @@ R² Score  : 0.5007
 </section>
 <hr class="docutils" />
 <section id="visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya">
-<h2>4.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya<a class="headerlink" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
+<h2>8.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya<a class="headerlink" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
 <p>Setelah model KNN berhasil dilatih, langkah berikutnya adalah melakukan visualisasi hasil prediksi. Visualisasi ini bertujuan untuk membandingkan nilai aktual NO₂ dengan nilai hasil prediksi yang dihasilkan oleh model KNN.</p>
 <p>Dengan membandingkan kedua garis pada grafik, kita dapat melihat apakah model mampu mengikuti pola perubahan data yang sebenarnya. Semakin dekat posisi garis prediksi terhadap garis aktual, maka semakin baik kemampuan model dalam melakukan prediksi.</p>
 <div class="cell docutils container">
@@ -1592,7 +1597,7 @@ plt.show()
 </section>
 </section>
 <section id="visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya">
-<h2>4.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya<a class="headerlink" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
+<h2>8.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya<a class="headerlink" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya" title="Permalink to this heading">#</a></h2>
 <p>Setelah model KNN dengan skenario sepuluh hari sebelumnya berhasil dilatih, langkah berikutnya adalah melakukan visualisasi hasil prediksi. Visualisasi ini bertujuan untuk membandingkan nilai aktual NO₂ dengan nilai hasil prediksi yang dihasilkan oleh model KNN menggunakan informasi dari sepuluh hari sebelumnya.</p>
 <p>Dengan membandingkan kedua garis pada grafik, dapat diamati sejauh mana model mampu mengikuti pola perubahan konsentrasi NO₂ yang sebenarnya. Selain itu, visualisasi ini juga digunakan untuk membandingkan performa model 10 hari sebelumnya dengan model 4 hari sebelumnya yang telah dibangun pada tahap sebelumnya.</p>
 <div class="cell docutils container">
@@ -1664,7 +1669,7 @@ plt.show()
 </section>
 </section>
 <section id="visualisasi-time-series-konsentrasi-no2-harian">
-<h2>4.9 Visualisasi Time Series Konsentrasi NO₂ Harian<a class="headerlink" href="#visualisasi-time-series-konsentrasi-no2-harian" title="Permalink to this heading">#</a></h2>
+<h2>8.9 Visualisasi Time Series Konsentrasi NO₂ Harian<a class="headerlink" href="#visualisasi-time-series-konsentrasi-no2-harian" title="Permalink to this heading">#</a></h2>
 <p>Setelah seluruh proses preprocessing selesai dilakukan, langkah berikutnya adalah membuat visualisasi data time series. Visualisasi ini bertujuan untuk melihat pola perubahan konsentrasi Nitrogen Dioksida (NO₂) di Kecamatan Sukolilo, Kota Surabaya selama periode pengamatan.</p>
 <p>Melalui grafik time series, kita dapat mengamati tren, fluktuasi, serta perubahan konsentrasi NO₂ dari waktu ke waktu. Tahap ini penting dilakukan sebelum membangun model prediksi karena dapat membantu memahami karakteristik data yang akan digunakan.</p>
 <div class="cell docutils container">
@@ -1819,46 +1824,46 @@ print(&quot;CSV berhasil disimpan&quot;)
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-menggunakan-knn-regression">4. Modeling Menggunakan KNN Regression</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">4.1 Normalisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-menggunakan-knn-regression">8. Modeling Menggunakan KNN Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">8.1 Normalisasi Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil">Hasil</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi-transformasi-time-series">4.2 Membuat Fungsi Transformasi Time Series</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-fungsi-transformasi-time-series">8.2 Membuat Fungsi Transformasi Time Series</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-4-hari">4.3 Membentuk Dataset Lag 4 Hari</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-4-hari">8.3 Membentuk Dataset Lag 4 Hari</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-10-hari">4.4 Membentuk Dataset Lag 10 Hari</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-dataset-lag-10-hari">8.4 Membentuk Dataset Lag 10 Hari</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membangun-fungsi-training-knn-regression">4.5 Membangun Fungsi Training KNN Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membangun-fungsi-training-knn-regression">8.5 Membangun Fungsi Training KNN Regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-knn-menggunakan-4-hari-sebelumnya">4.6 Training Model KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-model-knn-menggunakan-4-hari-sebelumnya">8.6 Training Model KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Penjelasan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya">4.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-4-hari-sebelumnya">8.7 Visualisasi Hasil Prediksi KNN Menggunakan 4 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-kode">Fungsi Kode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-visualisasi">Tujuan Visualisasi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-grafik">Penjelasan Grafik</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">Analisis Hasil</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya">4.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-prediksi-knn-menggunakan-10-hari-sebelumnya">8.8 Visualisasi Hasil Prediksi KNN Menggunakan 10 Hari Sebelumnya</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Fungsi Kode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Tujuan Visualisasi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Penjelasan Grafik</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analisis Hasil</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-konsentrasi-no2-harian">4.9 Visualisasi Time Series Konsentrasi NO₂ Harian</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-time-series-konsentrasi-no2-harian">8.9 Visualisasi Time Series Konsentrasi NO₂ Harian</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Fungsi Kode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Tujuan Visualisasi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Penjelasan Grafik</a></li>

@@ -1,0 +1,1309 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>PERTEMUAN 15 | Analisa Data &#8212; Pendata</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/vendor/fontawesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/copybutton_funcs.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/underscore-1.13.1.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/jquery-3.6.0.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/documentation_options.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/scripts/bootstrap.js"></script>
+    <script src="_static/scripts/pydata-sphinx-theme.js"></script>
+    <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ANALISA_DATA_PERTEMUAN_15';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Pertemuan 14 | Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression" href="Peramalan_Kadar_NO%E2%82%82_di_Kecamatan_Sukolilo%2C_Kota_Surabaya_Menggunakan_KNN_Regression%20%281%29.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Profil.jpeg" class="logo__image only-light" alt="Pendata - Home"/>
+    <script>document.write(`<img src="_static/Profil.jpeg" class="logo__image only-dark" alt="Pendata - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Biodata
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Penambangan%20Data.html">Apa Itu Penambangan Data</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Bisnis_UnderStanding.html">Pertemuan 2 | Bisnis UnderStanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html">Pertemuan 2 | Data UnderStanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Pertemuan 2 | Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Missing%20Value%20Imputation%20dan%20Normalisasi%20Data.html">Pertemuan 5 | Missing Value &amp; Normalisasi Data Titanic</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Reduksi_Dinamis.html">Pertemuan 7 | Reduksi Dinamis</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="UTS_PENDAT.html"><strong>UTS PENAMBANGAN DATA</strong></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Analisis_Data_Naive_Bayes.html">Pertemuan 10 | Analisis Menggunakan Naive Bayes</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Decision_Tree.html">Pertemuan 11 | Decision Tree</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Analisis_Data_Random_Forest.html">Pertemuan 12 |  Analisa Data Menggunakan Random Forest di KNIME</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Regresi_Linear.html">Pertemuan 13 | Regresi Linier</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Peramalan_Kadar_NO%E2%82%82_di_Kecamatan_Sukolilo%2C_Kota_Surabaya_Menggunakan_KNN_Regression%20%281%29.html">Pertemuan 14 | Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PERTEMUAN 15 | Analisa Data</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/dapinfru/pendata/main/v2/gh/dapinfru/pendata/main?urlpath=tree/ANALISA_DATA_PERTEMUAN_15.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/dapinfru/pendata/blob/main/github/dapinfru/pendata/blob/main/ANALISA_DATA_PERTEMUAN_15.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/dapinfru/pendata" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ANALISA_DATA_PERTEMUAN_15.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PERTEMUAN 15 | Analisa Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">PERTEMUAN 15 | Analisa Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-prediksi-tentang-apa">1. Analisa Prediksi Tentang Apa?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-bentuk-data-trainingnya">2. Bagaimana Bentuk Data Trainingnya?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-x">Input (X)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-y">Output (y)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bentuk-data-training">Bentuk Data Training</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lag">3. Apa Itu Lag?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-lag">Pengertian Lag</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh">Contoh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan Proses Analisis yang Dilakukan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-analisis">Tahapan Analisis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-dataset">1. Mengambil Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-data">2. Persiapan Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-variabel-lag">3. Membentuk Variabel Lag</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membagi-dataset">4. Membagi Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-model">5. Melatih Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-prediksi">6. Melakukan Prediksi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-explainability">7. Analisis Explainability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">Feature Importance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shap-values">SHAP Values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-dependence-plot">Partial Dependence Plot</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">8. Interpretasi Hasil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pertemuan-15-analisa-data">
+<h1>PERTEMUAN 15 | Analisa Data<a class="headerlink" href="#pertemuan-15-analisa-data" title="Permalink to this heading">#</a></h1>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="analisa-prediksi-tentang-apa">
+<h1>1. Analisa Prediksi Tentang Apa?<a class="headerlink" href="#analisa-prediksi-tentang-apa" title="Permalink to this heading">#</a></h1>
+<p>Analisa Prediksi</p>
+<p>Pada studi kasus pada dokumentasi Skforecast, model digunakan untuk memprediksi <strong>kebutuhan listrik harian (Demand)</strong> di wilayah Victoria, Australia.</p>
+<p>Tujuan utama dari analisis ini adalah memperkirakan jumlah kebutuhan listrik pada hari berikutnya berdasarkan data historis kebutuhan listrik sebelumnya dan informasi suhu udara.</p>
+<p>Variabel yang tersedia pada dataset antara lain:</p>
+<ul class="simple">
+<li><p>Demand : kebutuhan listrik.</p></li>
+<li><p>Temperature : suhu udara.</p></li>
+<li><p>Holiday : penanda hari libur.</p></li>
+<li><p>Date/Time : waktu pencatatan data.</p></li>
+</ul>
+<p>Target yang diprediksi oleh model adalah nilai <strong>Demand</strong> pada periode selanjutnya.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bagaimana-bentuk-data-trainingnya">
+<h1>2. Bagaimana Bentuk Data Trainingnya?<a class="headerlink" href="#bagaimana-bentuk-data-trainingnya" title="Permalink to this heading">#</a></h1>
+<p>Pada kasus Explainability Skforecast, data time series diubah menjadi bentuk supervised learning menggunakan teknik lag.</p>
+<section id="input-x">
+<h2>Input (X)<a class="headerlink" href="#input-x" title="Permalink to this heading">#</a></h2>
+<p>Data input yang digunakan model terdiri dari:</p>
+<ul class="simple">
+<li><p>lag_1 : Demand 1 hari sebelumnya</p></li>
+<li><p>lag_2 : Demand 2 hari sebelumnya</p></li>
+<li><p>lag_3 : Demand 3 hari sebelumnya</p></li>
+<li><p>lag_4 : Demand 4 hari sebelumnya</p></li>
+<li><p>lag_5 : Demand 5 hari sebelumnya</p></li>
+<li><p>lag_6 : Demand 6 hari sebelumnya</p></li>
+<li><p>lag_7 : Demand 7 hari sebelumnya</p></li>
+<li><p>Temperature : suhu udara</p></li>
+</ul>
+</section>
+<section id="output-y">
+<h2>Output (y)<a class="headerlink" href="#output-y" title="Permalink to this heading">#</a></h2>
+<p>Output yang diprediksi adalah:</p>
+<ul class="simple">
+<li><p>Demand (kebutuhan listrik)</p></li>
+</ul>
+</section>
+<section id="bentuk-data-training">
+<h2>Bentuk Data Training<a class="headerlink" href="#bentuk-data-training" title="Permalink to this heading">#</a></h2>
+<p>Tabel berikut merupakan hasil transformasi data time series menjadi data training yang digunakan oleh model forecasting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Contoh bentuk data training pada kasus forecasting</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;lag_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">170</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">210</span><span class="p">],</span>
+    <span class="s1">&#39;lag_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">160</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+    <span class="s1">&#39;lag_3&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">190</span><span class="p">],</span>
+    <span class="s1">&#39;lag_4&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">140</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">180</span><span class="p">],</span>
+    <span class="s1">&#39;lag_5&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">170</span><span class="p">],</span>
+    <span class="s1">&#39;lag_6&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span>
+    <span class="s1">&#39;lag_7&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">110</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+    <span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">28.1</span><span class="p">,</span> <span class="mf">29.3</span><span class="p">,</span> <span class="mf">27.8</span><span class="p">,</span> <span class="mf">30.2</span><span class="p">,</span> <span class="mf">28.9</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Demand&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">220</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== INPUT (X_train) ===&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== OUTPUT (y_train) ===&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== INPUT (X_train) ===
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-f14212f9-e173-4efe-a151-c364fdb57b02" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lag_1</th>
+      <th>lag_2</th>
+      <th>lag_3</th>
+      <th>lag_4</th>
+      <th>lag_5</th>
+      <th>lag_6</th>
+      <th>lag_7</th>
+      <th>Temperature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>170</td>
+      <td>160</td>
+      <td>150</td>
+      <td>140</td>
+      <td>130</td>
+      <td>120</td>
+      <td>110</td>
+      <td>28.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>180</td>
+      <td>170</td>
+      <td>160</td>
+      <td>150</td>
+      <td>140</td>
+      <td>130</td>
+      <td>120</td>
+      <td>29.3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>190</td>
+      <td>180</td>
+      <td>170</td>
+      <td>160</td>
+      <td>150</td>
+      <td>140</td>
+      <td>130</td>
+      <td>27.8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>200</td>
+      <td>190</td>
+      <td>180</td>
+      <td>170</td>
+      <td>160</td>
+      <td>150</td>
+      <td>140</td>
+      <td>30.2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>210</td>
+      <td>200</td>
+      <td>190</td>
+      <td>180</td>
+      <td>170</td>
+      <td>160</td>
+      <td>150</td>
+      <td>28.9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-f14212f9-e173-4efe-a151-c364fdb57b02')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-f14212f9-e173-4efe-a151-c364fdb57b02 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-f14212f9-e173-4efe-a151-c364fdb57b02');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+  <div id="id_4f0ee70c-17ac-4c41-87fa-b4b1490401e4">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('X_train')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_4f0ee70c-17ac-4c41-87fa-b4b1490401e4 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('X_train');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== OUTPUT (y_train) ===
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-cb401f7c-a6ce-4051-b26a-1790dd89650f" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Demand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>180</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>190</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>210</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>220</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-cb401f7c-a6ce-4051-b26a-1790dd89650f')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-cb401f7c-a6ce-4051-b26a-1790dd89650f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-cb401f7c-a6ce-4051-b26a-1790dd89650f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+  <div id="id_1ce96643-336e-49c1-8896-a842cca1018f">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('y_train')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_1ce96643-336e-49c1-8896-a842cca1018f button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('y_train');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="apa-itu-lag">
+<h1>3. Apa Itu Lag?<a class="headerlink" href="#apa-itu-lag" title="Permalink to this heading">#</a></h1>
+<section id="pengertian-lag">
+<h2>Pengertian Lag<a class="headerlink" href="#pengertian-lag" title="Permalink to this heading">#</a></h2>
+<p>Lag adalah nilai data pada periode sebelumnya yang digunakan sebagai informasi untuk memprediksi nilai pada periode berikutnya.</p>
+<p>Dalam forecasting, data masa lalu dianggap memiliki hubungan dengan data masa depan sehingga digunakan sebagai fitur atau variabel input.</p>
+<section id="contoh">
+<h3>Contoh<a class="headerlink" href="#contoh" title="Permalink to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hari</p></th>
+<th class="head"><p>Demand</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Senin</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>Selasa</p></td>
+<td><p>120</p></td>
+</tr>
+<tr class="row-even"><td><p>Rabu</p></td>
+<td><p>130</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kamis</p></td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jika ingin memprediksi Demand pada hari Kamis maka:</p>
+<ul class="simple">
+<li><p>lag_1 = 130 (Rabu)</p></li>
+<li><p>lag_2 = 120 (Selasa)</p></li>
+<li><p>lag_3 = 100 (Senin)</p></li>
+</ul>
+<p>Artinya:</p>
+<ul class="simple">
+<li><p>lag_1 = nilai 1 periode sebelumnya.</p></li>
+<li><p>lag_2 = nilai 2 periode sebelumnya.</p></li>
+<li><p>lag_3 = nilai 3 periode sebelumnya.</p></li>
+</ul>
+<p>Pada kasus Skforecast digunakan 7 lag sehingga model melihat data Demand selama 7 hari terakhir untuk memprediksi hari berikutnya.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="jelaskan-proses-analisis-yang-dilakukan">
+<h1>4. Jelaskan Proses Analisis yang Dilakukan<a class="headerlink" href="#jelaskan-proses-analisis-yang-dilakukan" title="Permalink to this heading">#</a></h1>
+<section id="tahapan-analisis">
+<h2>Tahapan Analisis<a class="headerlink" href="#tahapan-analisis" title="Permalink to this heading">#</a></h2>
+<section id="mengambil-dataset">
+<h3>1. Mengambil Dataset<a class="headerlink" href="#mengambil-dataset" title="Permalink to this heading">#</a></h3>
+<p>Dataset kebutuhan listrik Victoria digunakan sebagai sumber data untuk proses forecasting.</p>
+<p>Variabel yang tersedia:</p>
+<ul class="simple">
+<li><p>Demand</p></li>
+<li><p>Temperature</p></li>
+<li><p>Holiday</p></li>
+<li><p>Date</p></li>
+</ul>
+</section>
+<section id="persiapan-data">
+<h3>2. Persiapan Data<a class="headerlink" href="#persiapan-data" title="Permalink to this heading">#</a></h3>
+<p>Data dibersihkan dan diubah menjadi format time series sehingga dapat digunakan oleh model forecasting.</p>
+</section>
+<section id="membentuk-variabel-lag">
+<h3>3. Membentuk Variabel Lag<a class="headerlink" href="#membentuk-variabel-lag" title="Permalink to this heading">#</a></h3>
+<p>Data Demand sebelumnya diubah menjadi beberapa fitur:</p>
+<ul class="simple">
+<li><p>lag_1</p></li>
+<li><p>lag_2</p></li>
+<li><p>lag_3</p></li>
+<li><p>lag_4</p></li>
+<li><p>lag_5</p></li>
+<li><p>lag_6</p></li>
+<li><p>lag_7</p></li>
+</ul>
+</section>
+<section id="membagi-dataset">
+<h3>4. Membagi Dataset<a class="headerlink" href="#membagi-dataset" title="Permalink to this heading">#</a></h3>
+<p>Dataset dibagi menjadi:</p>
+<ul class="simple">
+<li><p>Data Training</p></li>
+<li><p>Data Testing</p></li>
+</ul>
+<p>Data training digunakan untuk melatih model sedangkan data testing digunakan untuk mengukur performa model.</p>
+</section>
+<section id="melatih-model">
+<h3>5. Melatih Model<a class="headerlink" href="#melatih-model" title="Permalink to this heading">#</a></h3>
+<p>Model yang digunakan adalah:</p>
+<ul class="simple">
+<li><p>ForecasterRecursive</p></li>
+<li><p>LGBMRegressor (LightGBM)</p></li>
+</ul>
+<p>Model mempelajari hubungan antara Demand masa lalu dan Temperature terhadap Demand masa depan.</p>
+</section>
+<section id="melakukan-prediksi">
+<h3>6. Melakukan Prediksi<a class="headerlink" href="#melakukan-prediksi" title="Permalink to this heading">#</a></h3>
+<p>Model digunakan untuk memprediksi kebutuhan listrik pada periode berikutnya.</p>
+</section>
+<section id="analisis-explainability">
+<h3>7. Analisis Explainability<a class="headerlink" href="#analisis-explainability" title="Permalink to this heading">#</a></h3>
+<p>Setelah model menghasilkan prediksi, dilakukan analisis explainability menggunakan:</p>
+<section id="feature-importance">
+<h4>Feature Importance<a class="headerlink" href="#feature-importance" title="Permalink to this heading">#</a></h4>
+<p>Mengetahui fitur yang paling berpengaruh terhadap prediksi.</p>
+</section>
+<section id="shap-values">
+<h4>SHAP Values<a class="headerlink" href="#shap-values" title="Permalink to this heading">#</a></h4>
+<p>Menjelaskan kontribusi masing-masing fitur terhadap hasil prediksi.</p>
+</section>
+<section id="partial-dependence-plot">
+<h4>Partial Dependence Plot<a class="headerlink" href="#partial-dependence-plot" title="Permalink to this heading">#</a></h4>
+<p>Menunjukkan bagaimana perubahan suatu fitur memengaruhi hasil prediksi.</p>
+</section>
+</section>
+<section id="interpretasi-hasil">
+<h3>8. Interpretasi Hasil<a class="headerlink" href="#interpretasi-hasil" title="Permalink to this heading">#</a></h3>
+<p>Berdasarkan hasil analisis, fitur yang paling berpengaruh terhadap prediksi kebutuhan listrik adalah:</p>
+<ul class="simple">
+<li><p>Temperature</p></li>
+<li><p>Lag Demand sebelumnya</p></li>
+</ul>
+<p>Hal ini menunjukkan bahwa kebutuhan listrik sangat dipengaruhi oleh pola historis dan kondisi suhu udara.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Peramalan_Kadar_NO%E2%82%82_di_Kecamatan_Sukolilo%2C_Kota_Surabaya_Menggunakan_KNN_Regression%20%281%29.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pertemuan 14 | Peramalan Kadar NO₂ di Kecamatan Sukolilo, Kota Surabaya Menggunakan KNN Regression</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">PERTEMUAN 15 | Analisa Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-prediksi-tentang-apa">1. Analisa Prediksi Tentang Apa?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-bentuk-data-trainingnya">2. Bagaimana Bentuk Data Trainingnya?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-x">Input (X)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-y">Output (y)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bentuk-data-training">Bentuk Data Training</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lag">3. Apa Itu Lag?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-lag">Pengertian Lag</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh">Contoh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan Proses Analisis yang Dilakukan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-analisis">Tahapan Analisis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-dataset">1. Mengambil Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-data">2. Persiapan Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-variabel-lag">3. Membentuk Variabel Lag</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membagi-dataset">4. Membagi Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melatih-model">5. Melatih Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-prediksi">6. Melakukan Prediksi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-explainability">7. Analisis Explainability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">Feature Importance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shap-values">SHAP Values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-dependence-plot">Partial Dependence Plot</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">8. Interpretasi Hasil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dhafin Rizqika Akhmad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
